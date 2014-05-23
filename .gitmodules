@@ -1,0 +1,6 @@
+[submodule "humextra"]
+	path = humextra
+	url = git://github.com/craigsapp/humextra.git
+[submodule "humdrum"]
+	path = humdrum
+	url = git://github.com/kroger/humdrum.git
