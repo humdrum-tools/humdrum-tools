@@ -28,7 +28,47 @@ HUMDRUM_TARGET  := $(shell echo `pwd`/humdrum/bin)
 #                                                                         #
 #                                                                         #
 
-all: humdrum humextra checkpath
+all: check-recursive humdrum humextra checkpath
+
+
+check-recursive: check-recursive-humdrum check-recursive-humextra
+
+
+check-recursive-humdrum: check-recursive-humdrum-pre
+
+ifeq ($(wildcard humdrum/Makefile),)
+	$(error install Humdrum Tookit before proceeeding)
+endif
+
+
+check-recursive-humdrum-pre:
+
+ifeq ($(wildcard humdrum/Makefile),)
+	@echo "[0;31m"
+	@echo "*** Missing Makefile for Humdrum Toolkit.  You must run the command"
+	@echo "***    [0;32mgit pull -recursive[0;31m"
+	@echo "*** before continuing."
+	@echo "[0m"
+endif
+
+
+check-recursive-humextra: check-recursive-humextra-pre
+
+ifeq ($(wildcard humextra/Makefile),)
+	$(error install Humdrum Extras before proceeeding)
+endif
+
+
+check-recursive-humextra-pre:
+
+ifeq ($(wildcard humextra/Makefile),)
+	@echo "[0;31m"
+	@echo "*** Missing Makefile for Humdrum Extras.  You must run the command"
+	@echo "***    [0;32mgit pull -recursive[0;31m"
+	@echo "*** before continuing."
+	@echo "[0m"
+endif
+
 
 help: info
 info:
