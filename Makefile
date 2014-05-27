@@ -46,7 +46,7 @@ check-recursive-humdrum-pre:
 ifeq ($(wildcard humdrum/Makefile),)
 	@echo "[0;31m"
 	@echo "*** Missing Makefile for Humdrum Toolkit.  You must run the command"
-	@echo "***    [0;32mgit pull -recursive[0;31m"
+	@echo "***    [0;32mgit submodule update --init --recursive[0;31m"
 	@echo "*** before continuing."
 	@echo "[0m"
 endif
@@ -64,7 +64,7 @@ check-recursive-humextra-pre:
 ifeq ($(wildcard humextra/Makefile),)
 	@echo "[0;31m"
 	@echo "*** Missing Makefile for Humdrum Extras.  You must run the command"
-	@echo "***    [0;32mgit pull -recursive[0;31m"
+	@echo "***    [0;32mgit update --init --recursive[0;31m"
 	@echo "*** before continuing."
 	@echo "[0m"
 endif
