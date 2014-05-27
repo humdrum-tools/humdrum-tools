@@ -9,7 +9,7 @@ Collection of Humdrum music analysis software.
 For system wide installation, the recommended location of the humdrum-tools repository is in /usr/local.  For individual users, the humdrum-tools repository can reside anywhere within their file structure.  To download this GitHub repository using [git](http://en.wikipedia.org/wiki/Git_%29software%29) in a terminal, type:
 
 ```bash
-   cd to-where-you-want-to install
+   cd to-where-you-want-to-install
    git clone --recursive https://github.com/humdrum-tools/humdrum-tools
 ```
 
