@@ -31,8 +31,9 @@ HUMDRUM_TARGET  := $(shell echo `pwd`/humdrum/bin)
 all: check-recursive humdrum humextra checkpath
 
 
+pull: update
 update:
-	git update
+	git pull
 	git submodule update --init --recursive
 	git submodule update --recursive
 
