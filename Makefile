@@ -53,7 +53,7 @@ check-recursive-humdrum-pre:
 ifeq ($(wildcard humdrum/Makefile),)
 	@echo "[0;31m"
 	@echo "*** Missing Makefile for Humdrum Toolkit.  You must run the command"
-	@echo "***    [0;32mgit submodule update --init --recursive[0;31m"
+	@echo "***    [0;32mmake update[0;31m"
 	@echo "*** before continuing."
 	@echo "[0m"
 endif
@@ -108,6 +108,11 @@ humextra-clean:
 
 install: humdrum-install humextra-install
 
+
+regression: humdrum-regression
+
+humdrum-regression:
+	(cd humdrum; $(MAKE) regression)
 
 install-humdrum: humdrum-install
 humdrum-install:
