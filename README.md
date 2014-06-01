@@ -116,8 +116,9 @@ by typing this command:
 
 ```bash
    cd /usr/local/humdrum-tools    # or wherever you placed the repository
-   git pull --recursive
+   make update
 ```
 
+This will also download the humdrum and humextra packages if the ```--recursive``` option was not used in the initial ```git clone``` download of humdrum-tools.
 
 

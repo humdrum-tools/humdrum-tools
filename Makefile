@@ -35,7 +35,7 @@ pull: update
 update:
 	git pull
 	git submodule update --init --recursive
-	git submodule update --recursive
+	git submodule foreach "(git checkout master; git pull)"
 
 
 check-recursive: check-recursive-humdrum check-recursive-humextra
@@ -88,7 +88,7 @@ info:
 	@echo
 
 humdrum:
-	(cd humdrum; $(ENV) $(MAKE))
+	(cd humdrum; $(ENV) $(MAKE) bin)
 
 
 humextra:
@@ -126,7 +126,7 @@ ifeq (,$(HUMDRUM_PATH))
 	@echo "*** The computer should reply to the above command with this string:"
 	@echo "***     [0;31m`pwd`/humdrum/bin/census[0;32m"
 	@echo "[0m"
-else ifneq ($HUMDRUM_PATH,$HUMDRUM_TARGET)
+else ifneq ($(HUMDRUM_PATH),$(HUMDRUM_TARGET))
 	echo "PATH=`pwd`/humdrum/bin:\$$PATH" >> ~/.profile
 	@echo "[0;31m"
 	@echo "*** `pwd`/humdrum/bin added to command search path"
@@ -167,7 +167,7 @@ ifeq (,$(HUMEXTRA_PATH))
 	@echo "*** The computer should reply to the above command with this string:"
 	@echo "***     [0;31m`pwd`/humextra/bin/census[0;32m"
 	@echo "[0m"
-else ifneq ($HUMEXTRA_PATH,$HUMEXTRA_TARGET)
+else ifneq ($(HUMEXTRA_PATH),$(HUMEXTRA_TARGET))
 	echo "PATH=`pwd`/humextra/bin:\$$PATH" >> ~/.profile
 	@echo "[0;31m"
 	@echo "*** `pwd`/humextra/bin added to command search path"
