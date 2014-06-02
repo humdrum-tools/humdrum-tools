@@ -2,7 +2,7 @@
 ##
 ## Programmer:    Craig Stuart Sapp <craig@ccrma.stanford.edu>
 ## Creation Date: Mon May 26 15:55:09 PDT 2014
-## Last Modified: Mon May 26 18:38:47 PDT 2014
+## Last Modified: Mon Jun  2 16:01:33 PDT 2014 (finished remove-data)
 ## Filename:      ...humdrum-tools/Makefile
 ##
 ## Description: This Makefile will compile programs in the humdrum and
@@ -24,18 +24,38 @@ HUMEXTRA_TARGET := $(shell echo `pwd`/humextra/bin)
 HUMDRUM_PATH    := $(shell echo $$PATH |tr : '\n'|grep 'humdrum/bin'|head -n 1)
 HUMDRUM_TARGET  := $(shell echo `pwd`/humdrum/bin)
 
+# Variables needed for remove-data target:
+VALUE  = $(shell grep -A2 -n -m1 '^\[submodule "data"\]' .gitmodules | sed 's/[^0-9].*//')
+VALUE2 = $(shell echo $(VALUE)+2 | bc)
+
 ###########################################################################
 #                                                                         #
 #                                                                         #
 
 all: check-recursive humdrum humextra checkpath
 
+data:
+	git submodule add -f https://github.com/humdrum-tools/humdrum-data data
+	git submodule update --init --recursive
+
+
+remove-data:
+	-git submodule deinit -f data
+	-git rm --cached data
+	-rm -rf data
+	-rm -rf .git/modules/data
+	-cat .gitmodules | sed '$(VALUE),$(VALUE2)d' > .gitmodules-temp
+	-mv .gitmodules-temp .gitmodules
+ifeq ($(filter-out .gitmodules,$(shell wc -l .gitmodules)),0)
+	-rm .gitmodules
+endif
+
 
 pull: update
 update:
 	git pull
 	git submodule update --init --recursive
-	git submodule foreach "(git checkout master; git pull)"
+	git submodule foreach "(git checkout master; git pull origin master)"
 
 
 check-recursive: check-recursive-humdrum check-recursive-humextra
