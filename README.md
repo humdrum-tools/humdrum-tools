@@ -23,7 +23,7 @@ for some reason).
 [Humdrum Extras](http://extras.humdrum.org) consists of additional
 tools for processing Humdrum files, as well as a parsing library
 for Humdrum files written in C++.  A web inteface to many Humdrum Extras
-programs is available [here](https://extras.humdrum.org/online).
+programs is available [here](http://extras.humdrum.org/online).
 
 If you are lucky or a unix expert (and have git and gcc installed),
 then you can run the following commands to download and install the
@@ -184,8 +184,8 @@ Super-users can instead install for all users on a computer system by
 running this command instead:
 ```bash
    cd humdrum-tools
-   sudo echo "export PATH=`pwd`/humdrum/bin:$PATH" >> /etc/profile"
-   sudo echo "export PATH=`pwd`/humextra/bin:$PATH" >> /etc/profile"
+   sudo echo "export PATH=`pwd`/humdrum/bin:$PATH" >> /etc/profile
+   sudo echo "export PATH=`pwd`/humextra/bin:$PATH" >> /etc/profile
 ```
 
 
