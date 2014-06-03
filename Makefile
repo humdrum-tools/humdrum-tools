@@ -1,4 +1,4 @@
-## Master humdrum-tools GNU makefile.
+## Master humdrum-tools GNU/BSD makefile.
 ##
 ## Programmer:    Craig Stuart Sapp <craig@ccrma.stanford.edu>
 ## Creation Date: Mon May 26 15:55:09 PDT 2014
@@ -227,7 +227,7 @@ ifeq (,$(HUMDRUM_PATH))
 	@echo "*** Typically this is done with the command:"
 	@echo "***    [0;32mecho \"PATH=\$$PATH:`pwd`/humdrum/bin\" >> ~/.profile"
 	@echo "[0m"
-else ifneq ($HUMDRUM_PATH,$HUMDRUM_TARGET)
+else ifneq ($(HUMDRUM_PATH),$(HUMDRUM_TARGET))
 	@echo "[0;31m"
 	@echo "*** A different humdrum/bin directory already exists in the command search";
 	@echo "*** path.  This installation will be shadowed by the one in:";
@@ -251,7 +251,7 @@ ifeq (,$(HUMEXTRA_PATH))
 	@echo "*** Typically this is done with the command:"
 	@echo "***    [0;32mecho \"PATH=\$$PATH:`pwd`/humextra/bin\" >> ~/.profile"
 	@echo "[0m"
-else ifneq ($HUMEXTRA_PATH,$HUMEXTRA_TARGET)
+else ifneq ($(HUMEXTRA_PATH),$(HUMEXTRA_TARGET))
 	@echo "[0;31m"
 	@echo "*** A different humextra/bin directory already exists in the command search";
 	@echo "*** path.  This installation will be shadowed by the one in:";
