@@ -69,17 +69,18 @@ info: help
 help:
 	@echo
 	@echo "Available make targets:"
-	@echo "[0;32mmake[0;32m             -- Compile programs in humdrum and humextra directories."
-	@echo "  [0;32mmake humdrum[0;32m   -- Only compile Humdrum Toolkit."
-	@echo "  [0;32mmake humextra[0;32m  -- Only compile Humdrum Extras."
-	@echo "[0;32mmake install[0;32m     -- Include bin directories in \$$PATH variable."
+	@echo "[0;32mmake[0m             -- Compile programs in humdrum and humextra directories."
+	@echo "  [0;32mmake humdrum[0m   -- Only compile Humdrum Toolkit."
+	@echo "  [0;32mmake humextra[0m  -- Only compile Humdrum Extras."
+	@echo "[0;32mmake install[0m     -- Include bin directories in \$$PATH variable."
 	@echo "                    (single-user install only)."
-	@echo "[0;32mmake update[0;32m      -- Download most recent versions of software"
+	@echo "[0;32mmake regression[0m   -- Run regression tests on software."
+	@echo "[0;32mmake update[0m      -- Download most recent versions of software"
 	@echo "                    (then run 'make' to compile updates)."
-	@echo "[0;32mmake data[0;32m        -- Download humdrum-data repository (into 'data' subdirectory)."
-	@echo "[0;32mmake webdoc[0;32m      -- Download Humdrum documentation website repository "
+	@echo "[0;32mmake data[0m        -- Download humdrum-data repository (into 'data' subdirectory)."
+	@echo "[0;32mmake webdoc[0m      -- Download Humdrum documentation website repository "
 	@echo "                    (into 'webdoc' subdirectory)."
-	@echo
+	@echo "[0m"
 
 
 

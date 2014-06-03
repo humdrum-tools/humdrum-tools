@@ -1,124 +1,205 @@
 humdrum-tools
 =============
 
-This repository contains a collection of software for computational
-music analysis using data files in the Humdrum file format.  The
-```humdrum``` subdirectory contains the [Humdrum
+This repository contains a collection of command-line programs for
+computational music analysis which process files in the Humdrum file
+format.  The ```humdrum``` subdirectory contains the [Humdrum
 Toolkit](https://github.com/humdrum-tools/humdrum), and the
 ```humextra``` subdirectory contains the [Humdrum
 Extras](https://github.com/craigsapp/humextra) package.  Documentation
 for using Humdrum tools is found at http://www.humdrum.org.
 
+The Humdrum Toolkit is a set of [unix
+command-line](https://www.youtube.com/watch?v=bE9DyH43C2I) programs
+which process data files, including musical scores, in the Humdrum
+file format.  The Humdrum Toolkit can be used on unix-based computer
+systems such as linux and Apple OS X.  To use in MS Windows, install
+a unix terminal emulator.  A comprehensive package for linux tools
+in Windows can be downloaded from http://www.cygwin.com.  The
+simplest method is to download all cygwin packages when installing,
+but that will require a long installation duration (such as overnight
+for some reason).
 
-# Downloading #
+[Humdrum Extras](http://extras.humdrum.org) consists of additional
+tools for processing Humdrum files, as well as a parsing library
+for Humdrum files written in C++.  A web inteface to many Humdrum Extras
+programs is available [here](https://extras.humdrum.org/online).
+
+If you are lucky or a unix expert (and have git and gcc installed),
+then you can run the following commands to download and install the
+Humdrum Toolkit as a single-user installation as well as download
+sample musical data and test all of the tools (some commands below 
+may need to be prefixed with ```sudo```):
+```bash
+   cd /usr/local
+   git clone --recursive https://github.com/humdrum-tools/humdrum-tools
+   cd humdrum-tools
+   make 
+   make install
+   make regression
+   make data
+```
+Otherwise, follow the more detailed instructions below.
+
+Further documentation about the Humdrum Toolkit and Humdrum Extras 
+as well as installing and using them can be found at http://www.humdrum.org, 
+
+
+Installing git
+==============
+
+To download this repository, you should have git installed on your
+computer.  [Git](http://git-scm.com/book/en/Getting-Started-Git-Basics) 
+is a version control program which is the main interface to online
+repositories on GitHub.  To check if the ```git``` program is
+installed on your computer, type in a terminal:
+```bash
+   which git
+```
+If the terminal replies with a line such as ```/usr/local/bin/git```,
+then git is installed and you can run the above installation commands.
+If the ```which``` command replies with an error that git cannot
+be found, you need to install git.  How to do this will depend on
+your operating system.  
+
+In linux, the installation command for git is usually one of these two 
+possibilities:
+```bash
+   sudo yum install git
+   sudo apt-get install git
+```
+
+For [cygwin](http://www.cygwin.com) on MS Windows computers, you
+should have included ```git``` when installing packages when you
+first installed cygwin.  Re-run the installation program and include
+git in the package installation list.
+
+For Apple OS X, the easiest method is to download git from [this
+link](http://git-scm.com/download/mac).  More advanced Mac users
+can use [Homebrew](http://brew.sh) to install git:
+```bash
+   brew install git
+```
+
+You could also download GUI interfaces for git
+[here](http://git-scm.com/downloads/guis).  A [Github/git
+plugin](http://eclipse.github.com) is also available for the Eclipse
+IDE ([watch video](http://www.youtube.com/watch?v=ptK9-CNms98)).
+
+
+Downloading
+===========
 
 For system-wide installation, the recommended location of the
 humdrum-tools repository is in ```/usr/local```.  For individual
 users, the humdrum-tools repository can reside anywhere within their
 file structure.  
 
-There are two versions of the Humdrum tools: one with and one without
-an included set of data files.  To download this GitHub repository
-without the included data, use
-[git](http://en.wikipedia.org/wiki/Git_%29software%29) in a terminal
-by typing:
+To download, type these commands:
 
 ```bash
    cd /usr/local  # suggested location for system-wide installation
    git clone --recursive https://github.com/humdrum-tools/humdrum-tools
+   # or if there are file permission problems.
+   sudo git clone --recursive https://github.com/humdrum-tools/humdrum-tools
 ```
-
-For the version which includes data files:
-
-```bash
-   cd /usr/local  # suggested location for system-wide installation
-   git clone --recursive https://github.com/humdrum-tools/humdrum-tools-with-data humdrum-tools
-```
-
-Data can be added later to the to dataless version of humdrum-tools
-by typing these commands:
-
-```bash
-   cd /usr/local/humdrum-tools  # or wherever humdrum-tools is installed
-   mkdir data
-   git submodule add -f git://github.com/humdrum-tools/humdrum-data data
-```
-
 
 The ```--recursive``` option is needed to download each of the
 individual repositories inside of this meta-repository.
 
-In a unix terminal, those of you unfamiliar with git can check to
-see if git is installed by typing ```which git```.  If the terminal
-replies with a path to git, then you can proceed with the above
-cloning to download the repository.  If not, then typically you can
-use a package manager to install git, such as ```apt-get install
-git``` or ```yum install git``` in linux.  On Apple OS X computers,
-git can be installed directly from [here](http://git-scm.com/download/mac)
-or by more experienced users from a mac package manager such as
-[Homebrew](http://brew.sh).  You can download GUI interfaces for
-git [here](http://git-scm.com/downloads/guis).  A [Github/git
-plugin](http://eclipse.github.com) is also available for the Eclipse
-IDE ([watch video](http://www.youtube.com/watch?v=ptK9-CNms98)).
-
-This repository cannot be downloaded in a very useful format from
-the ZIP link on the Github website, since the included repositories
-for each composer will not be included in that ZIP file.  You must
-either use [git](http://en.wikipedia.org/wiki/Git_%29software%29)
-software or separately download each of the individual composer's
-ZIP files linked from the table above.  Follow [this bash
-script](https://gist.github.com/josquin-research-project/8177804)
-to download manually using wget (usually for linux &
-[cygwin](http://www.cygwin.com)), or [this bash
-script](https://gist.github.com/josquin-research-project/8177884)
-for OS X.
-
-# Compiling and Installing #
-
-## Preliminaries ##
-
-First you should verify that you have the GCC compiler installed on your system.  This typically comes preinstalled in linux, but will need to be installed on Apple OS X computers.  The following command will report the location of the gcc compiler if it is installed:
-
+For single-user installations, you can install in your home directory or
+elsewhere in your account:
 ```bash
-   which gcc
+   cd      # move to home directory
+   git clone --recursive https://github.com/humdrum-tools/humdrum-tools
 ```
 
-If there is no reply from the above command, you must install gcc first.  A few
-of the Humdrum Toolkit commands require compiling from C, and all of the 
-Humdrum Extras commands require compiling from C++.
+Sample Humdrum file data can be downloaded by typing the following
+command within the humdrum-tools directory:
+```bash
+   cd /usr/local/humdrum-tools  # or wherever humdrum-tools is installed
+   make data
+```
 
-## Compiling ##
+Note that repository cannot be downloaded in a very useful format from
+the ZIP link on the Github website since the included repositories
+for each composer will not be included in that ZIP file.  GitHub may
+allow submodule inclusion in their ZIP downloads in the future.
 
-Once you have downloaded the humdrum-tools repository, move
-into the humdrum-tools directory and then type
+Compiling 
+=========
 
+To compile programs in the two humdrum-tools submodules,
+type ```make``` inside of the humdrum directory:
+```bash
+    cd humdrum-tools
+    make
+```
+
+Note that to use the ```make``` command or ```gcc``` for compiling
+the C/C++ programs, these must already be installed.  Check to see if
+gcc is installed by typing this command (gcc installation includes
+the <em>make</em> command as well):
+````bash
+   which gcc
+   which make
+```
+The terminal should reply with something like ```/usr/bin/gcc```
+and ```/usr/bin/make```.  If gcc is not installed, then you will
+have to figure out how to install it on your computer first.
+Linux/Unix computers usually have it pre-installed with the operating
+system; if not, then typing ```sudo yum install gcc``` or ```sudo
+apt-get install gcc``` will typically install it.  Apple OS X does
+not include it by default, so you will have to install it.  If you
+are using OS X Mavericks or later, then type ```xcode-select
+--install``` to install the Xcode command line tools. The ```make```
+command will be installed at the same time that ```gcc``` is
+installed.  Cygwin users would have to re-run the installation
+program and include the compile tools if gcc was not initially
+installed with cygwin.
+
+
+Installing
+==========
+
+To use humdrum-tools commands within any directory, you must add the
+humdrum/bin and humextra/bin directories to the PATH environmental variable.  
+This can be done temporarily for the current session by typing:
+```bash
+    cd humdrum-tools
+    PATH=`pwd`/humdrum/bin:$PATH)
+    PATH=`pwd`/humextra/bin:$PATH)
+```
+
+For a persistent installation of humdrum tools whenever you
+open a new terminal, you can type the following command to include
+the bin directories into the PATH command search path variable
+within the ~/.profile file.
 ```bash
    cd humdrum-tools
+   make install
+```
+This installation method is suitable for single-user installations.
+Super-users can instead install for all users on a computer system by
+running this command instead:
+```bash
+   cd humdrum-tools
+   sudo echo "export PATH=`pwd`/humdrum/bin:$PATH" >> /etc/profile"
+   sudo echo "export PATH=`pwd`/humextra/bin:$PATH" >> /etc/profile"
+```
+
+
+Updating
+========
+
+Software (and data if installed with ```make data```) periodically 
+can be updated to the most recent versions by typing this command:
+
+```bash
+   cd `which mint | sed 's/bin\/mint$//'` # or go to wherever installed
+   make update
    make
 ```
 
-## Installing ##
-
-Super-users installing in ```/usr/local/humdrum-tools``` should
-then update ```/etc/profile``` to add the search paths for humdrum/bin
-and humextra/bin to the ```$PATH``` environmental variable.  If you are
-doing a single user installation, you can automatically install the
-```$PATH``` variables in ```~/.profile``` with the command:
-
-```bash
-   make install
-```
-
-# Updating #
-
-Software (and data) can be periodically updated to the most recent version
-by typing this command:
-
-```bash
-   cd /usr/local/humdrum-tools    # or wherever you placed the repository
-   make update
-```
-
-This will also download the humdrum and humextra packages if the ```--recursive``` option was not used in the initial ```git clone``` download of humdrum-tools.
 
 
