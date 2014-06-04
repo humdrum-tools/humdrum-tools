@@ -121,6 +121,14 @@ command within the humdrum-tools directory:
    make data
 ```
 
+A local copy of the http://www.humdrum.org website can be downloaded
+with these commands:
+```bash
+   cd /usr/local/humdrum-tools  # or wherever humdrum-tools is installed
+   make webdoc
+```
+
+
 Note that repository cannot be downloaded in a very useful format from
 the ZIP link on the Github website since the included repositories
 for each composer will not be included in that ZIP file.  GitHub may
@@ -196,7 +204,7 @@ Software (and data if installed with ```make data```) periodically
 can be updated to the most recent versions by typing this command:
 
 ```bash
-   cd `which mint | sed 's/bin\/mint$//'` # or go to wherever installed
+   cd `which mint | sed 's/humdrum\/bin\/mint$//'`
    make update
    make
 ```
