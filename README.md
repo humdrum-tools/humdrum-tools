@@ -92,8 +92,8 @@ Downloading
 
 For system-wide installation, the recommended location of the
 humdrum-tools repository is in ```/usr/local```.  For individual
-users, the humdrum-tools repository can reside anywhere within their
-file structure.  
+user installations, the humdrum-tools repository can reside anywhere 
+within their file structure.  
 
 To download, type these commands:
 
@@ -129,8 +129,8 @@ with these commands:
 ```
 
 
-Note that repository cannot be downloaded in a very useful format from
-the ZIP link on the Github website since the included repositories
+Note that the repository cannot be downloaded in a very useful format
+from the ZIP link on the Github website since the included repositories
 for each composer will not be included in that ZIP file.  GitHub may
 allow submodule inclusion in their ZIP downloads in the future.
 
@@ -164,7 +164,8 @@ are using OS X Mavericks or later, then type ```xcode-select
 command will be installed at the same time that ```gcc``` is
 installed.  Cygwin users would have to re-run the installation
 program and include the compile tools if gcc was not initially
-installed with cygwin.
+installed with cygwin (a minimal installation will not include
+gcc).
 
 
 Installing
