@@ -167,8 +167,8 @@ humdrum/bin and humextra/bin directories to the PATH environmental variable.
 This can be done temporarily for the current session by typing:
 ```bash
     cd humdrum-tools
-    PATH=`pwd`/humdrum/bin:$PATH)
-    PATH=`pwd`/humextra/bin:$PATH)
+    PATH=`pwd`/humdrum/bin:$PATH
+    PATH=`pwd`/humextra/bin:$PATH
 ```
 
 For a persistent installation of humdrum tools whenever you
