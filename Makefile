@@ -424,7 +424,10 @@ endif
 ## Run regression tests
 ##
 
-regression: humdrum-regression
+regression: humdrum-regression humextra-regression
+
+humextra-regression:
+	(cd humextra; $(MAKE) regression)
 
 humdrum-regression:
 	(cd humdrum; $(MAKE) regression)
