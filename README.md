@@ -23,7 +23,7 @@ to download all cygwin packages when installing, but that will
 require a long installation duration (such as overnight for some
 reason).
 
-[*Humdrum Extras*](http://extras.humdrum.org) contains additional
+[*Humdrum Extras*](https://github.com/craigsapp/humextra) contains additional
 tools for processing Humdrum files, as well as a C++ library for
 parsing [Humdrum data
 files](https://github.com/humdrum-tools/humdrum-data).  A web-based
