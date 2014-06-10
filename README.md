@@ -46,7 +46,7 @@ humdrum-tools and set up as a single-user installation:
    make install     # Add bin directories to $PATH environment variable in ~/.bashrc_profile .
    make regression  # Test programs to make sure they are working on your computer.
    make data	    # Download sample data to work with.
-   make doc	    # Download documentation for offline reference.
+   make doc         # Download documentation for offline reference.
 ```
 Otherwise, follow the more detailed instructions below.
 Super-users can instead configure humdrum-tools for all users on a computer by typically
@@ -141,7 +141,7 @@ A local copy of the http://www.humdrum.org website can also be downloaded
 for off-line use with these commands:
 ```bash
    cd ~/humdrum-tools     # or wherever humdrum-tools was downloaded.
-   make webdoc
+   make doc
 # or from anywhere:
    git clone https://github.com/humdrum-tools/humdrum-tools.github.io humdrum-documentation
 ```

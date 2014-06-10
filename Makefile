@@ -2,7 +2,7 @@
 ##
 ## Programmer:    Craig Stuart Sapp <craig@ccrma.stanford.edu>
 ## Creation Date: Mon May 26 15:55:09 PDT 2014
-## Last Modified: Mon Jun  2 16:01:33 PDT 2014 (finished remove-data)
+## Last Modified: Tue Jun 10 02:29:18 PDT 2014
 ## Filename:      ...humdrum-tools/Makefile
 ##
 ## Description: This Makefile will compile programs in the humdrum and
@@ -30,7 +30,7 @@
 ##
 
 # Targets which don't actually refer to files:
-.PHONY : humextra humdrum data webdoc help
+.PHONY : humextra humdrum data webdoc doc help
 
 # Variables used to give hints about setup for $PATH environmental variable:
 HUMEXTRA_PATH   := $(shell echo $$PATH |tr : '\n'|grep 'humextra/bin'|head -n 1)
@@ -42,8 +42,8 @@ HUMDRUM_TARGET  := $(shell echo `pwd`/humdrum/bin)
 VALUE1 := $(shell if [ -r .gitmodules ]; then grep -A2 -n -m1 '^\[submodule "data"\]' .gitmodules | sed 's/[^0-9].*//'; fi)
 VALUE2 := $(shell if [ ! -z $(VALUE1) ]; then echo "$(VALUE1)+2" | bc; fi)
 
-# Variables needed for remove-webdoc target:
-VALUE3 := $(shell if [ -r .gitmodules ]; then grep -A2 -n -m1 '^\[submodule "webdoc"\]' .gitmodules | sed 's/[^0-9].*//'; fi)
+# Variables needed for remove-doc target:
+VALUE3 := $(shell if [ -r .gitmodules ]; then grep -A2 -n -m1 '^\[submodule "doc"\]' .gitmodules | sed 's/[^0-9].*//'; fi)
 VALUE4 := $(shell if [ ! -z $(VALUE3) ]; then echo "$(VALUE3)+2" | bc; fi)
 
 
@@ -78,8 +78,8 @@ help:
 	@echo "[0;32mmake update[0m      -- Download most recent versions of software"
 	@echo "                    (then run 'make' to compile updates)."
 	@echo "[0;32mmake data[0m        -- Download humdrum-data repository (into 'data' subdirectory)."
-	@echo "[0;32mmake webdoc[0m      -- Download Humdrum documentation website repository "
-	@echo "                    (into 'webdoc' subdirectory)."
+	@echo "[0;32mmake doc[0m         -- Download Humdrum documentation website repository "
+	@echo "                    (into 'doc' subdirectory)."
 	@echo "[0m"
 
 
@@ -118,17 +118,19 @@ endif
 ## Targets for adding/removing Humdrum website documentation 
 ##
 
+doc: webdoc
 webdoc: checkgit
-	git submodule add -f https://github.com/humdrum-tools/humdrum-tools.github.io webdoc
+	git submodule add -f https://github.com/humdrum-tools/humdrum-tools.github.io doc
 	git submodule update --init --recursive
 
 
+remove-doc: remove-webdoc
 remove-webdoc: checkgit
 ifneq ($(VALUE4),)
-	-git submodule deinit -f webdoc
-	-git rm --cached webdoc
-	-rm -rf webdoc
-	-rm -rf .git/modules/webdoc
+	-git submodule deinit -f doc
+	-git rm --cached doc
+	-rm -rf doc
+	-rm -rf .git/modules/doc
 	cat .gitmodules | sed '$(VALUE3),$(VALUE4)d' > .gitmodules-temp
 	-mv .gitmodules-temp .gitmodules
 endif
@@ -244,7 +246,7 @@ endif
 ## Cleaning targets
 ##
 
-clean: humdrum-clean humextra-clean remove-data remove-webdoc
+clean: humdrum-clean humextra-clean remove-data remove-doc
 
 
 humdrum-clean:
