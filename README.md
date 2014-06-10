@@ -49,7 +49,7 @@ humdrum-tools and set up as a single-user installation:
    make doc	    # Download documentation for offline reference.
 ```
 Otherwise, follow the more detailed instructions below.
-Super-users can instead install for all users on a computer by typically
+Super-users can instead configure humdrum-tools for all users on a computer by typically
 installing in ```/usr/local/humdrum-tools```.
 
 Further documentation about the Humdrum Toolkit and Humdrum Extras 
