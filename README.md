@@ -7,7 +7,7 @@ Humdrum file format.  The ```humdrum``` subdirectory contains the
 [Humdrum Toolkit](https://github.com/humdrum-tools/humdrum), and
 the ```humextra``` subdirectory contains the [Humdrum
 Extras](https://github.com/craigsapp/humextra) package.  Documentation
-for using Humdrum tools is found at http://www.humdrum.org.
+for using Humdrum tools can be found at http://www.humdrum.org.
 
 The Humdrum Toolkit is a set of [unix
 command-line](https://www.youtube.com/watch?v=bE9DyH43C2I) programs
