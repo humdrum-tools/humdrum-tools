@@ -105,13 +105,11 @@ Downloading
 For individual user installations, the humdrum-tools repository can
 reside anywhere within a user's file structure.  The following
 instructions are for individual account installations, but system-wide
-installation will be similar, instead installing in
-```/usr/local/humdrum-tools``` and setting the PATH environment
-variable in ```/etc/profile``` or similar, rather than in
-```~/.bash_profile```.
+installation will be similar, instead installing in ```/usr/local/humdrum-tools``` 
+and setting the PATH environment variable in ```/etc/profile``` or 
+similar, rather than in ```~/.bash_profile```.
 
 To download, type these commands:
-
 ```bash
    cd           # Go to home directory or wherever you want to install.
    git clone --recursive https://github.com/humdrum-tools/humdrum-tools
@@ -146,11 +144,11 @@ for off-line use with these commands:
    git clone https://github.com/humdrum-tools/humdrum-tools.github.io humdrum-documentation
 ```
 
-Note that the repository cannot be downloaded in a very useful
-format from the ZIP link on the Github website since the included
-repositories for each composer will not be included in that ZIP
-file.  GitHub may allow submodule inclusion in their ZIP downloads
-in the future.
+Note that the humdurm-tools repository cannot be downloaded in a
+very useful format from the ZIP link on the Github website since
+the included repositories for each composer will not be included
+in that ZIP file.  GitHub may allow submodule inclusion in their
+ZIP downloads in the future.
 
 
 Compiling 
