@@ -9,26 +9,27 @@ the ```humextra``` subdirectory contains the [Humdrum
 Extras](https://github.com/craigsapp/humextra) package.  Documentation
 for using Humdrum tools can be found at http://www.humdrum.org.
 
-The Humdrum Toolkit is a set of [unix
-command-line](https://www.youtube.com/watch?v=bE9DyH43C2I) programs
-which process data files, including musical scores, in the Humdrum
-file format.  Most programs are written in AWK and called from shell
-scripts which handle command-line options, although there are also
-a few C-language programs in the Toolkit.  The Humdrum Toolkit can
-be used on unix-based computer systems such as linux and Apple OS
-X.  To use in MS Windows, install a unix terminal emulator.  A
-comprehensive package for linux tools in Windows can be downloaded
-from http://www.cygwin.com.  The simplest method is to download all
-cygwin packages when installing, but that will require a long
-installation duration (such as overnight for some reason).
+The [*Humdrum Toolkit*](https://github.com/humdrum-tools/humdrum) is
+a set of [unix command-line](https://www.youtube.com/watch?v=bE9DyH43C2I)
+programs which process data files, including musical scores, in the
+Humdrum file format.  Most programs are written in AWK and called
+from shell scripts which handle command-line options, although there
+are also a few C-language programs in the Toolkit.  The Humdrum
+Toolkit can be used on unix-based computer systems such as linux
+and Apple OS X.  To use in MS Windows, install a unix terminal
+emulator.  A comprehensive package for linux tools in Windows can
+be downloaded from http://www.cygwin.com.  The simplest method is
+to download all cygwin packages when installing, but that will
+require a long installation duration (such as overnight for some
+reason).
 
-[Humdrum Extras](http://extras.humdrum.org) consists of additional
+[*Humdrum Extras*](http://extras.humdrum.org) contains additional
 tools for processing Humdrum files, as well as a C++ library for
 parsing [Humdrum data
 files](https://github.com/humdrum-tools/humdrum-data).  A web-based
 interface for Humdrum Extras programs is available
 [here](http://extras.humdrum.org/online?command=mkeyscape%20-ln%20h://beethoven/sonatas/sonata01-1.krn&run=true),
-which utilizes [emscripten](https://github.com/kripken/emscripten)
+utilizing [emscripten](https://github.com/kripken/emscripten)
 to compile the C++ code into JavaScript for running directly in a
 web browser.  You can use this interface to try out Humdrum Extra
 programs without having to install any software.
@@ -42,9 +43,10 @@ humdrum-tools and set up as a single-user installation:
    cd humdrum-tools # Go into repository to run make commands.
    make update      # Make sure you have most recent humdrum/humextra code.
    make             # Compile C/C++ programs and create bin directories.
-   make install     # Add bin directories to $PATH environment variable in ~/.bashrc .
+   make install     # Add bin directories to $PATH environment variable in ~/.bashrc_profile .
    make regression  # Test programs to make sure they are working on your computer.
    make data	    # Download sample data to work with.
+   make doc	    # Download documentation for offline reference.
 ```
 Otherwise, follow the more detailed instructions below.
 Super-users can instead install for all users on a computer by typically
@@ -69,7 +71,8 @@ If the terminal replies with a line such as ```/usr/local/bin/git```,
 then git is installed and you can run the above installation commands.
 If the ```which``` command replies with an error that git cannot
 be found, you need to install git.  How to do this will depend on
-your operating system.  
+your operating system.  Here are installation hints for various
+computer systems:
 
 In linux, the installation command for git is usually one of these two 
 possibilities:
@@ -85,7 +88,7 @@ git in the package installation list.
 
 For Apple OS X, the easiest method is to download git from [this
 link](http://git-scm.com/download/mac).  More advanced Mac users
-can use [Homebrew](http://brew.sh) to install git:
+can use [Homebrew](http://brew.sh) to install git with this command:
 ```bash
    brew install git
 ```
@@ -99,10 +102,13 @@ IDE ([watch video](http://www.youtube.com/watch?v=ptK9-CNms98)).
 Downloading
 ===========
 
-For system-wide installation, the recommended location of the
-humdrum-tools repository is in ```/usr/local```.  For individual
-user installations, the humdrum-tools repository can reside anywhere 
-within their file structure.  
+For individual user installations, the humdrum-tools repository can
+reside anywhere within a user's file structure.  The following
+instructions are for individual account installations, but system-wide
+installation will be similar, instead installing in
+```/usr/local/humdrum-tools``` and setting the PATH environment
+variable in ```/etc/profile``` or similar, rather than in
+```~/.bash_profile```.
 
 To download, type these commands:
 
@@ -196,7 +202,7 @@ This can be done temporarily for the current session by typing:
 For a persistent installation of humdrum tools whenever you
 open a new terminal, you can type the following command to include
 the bin directories into the PATH command search path variable
-within the ~/.profile file.
+within the ~/.bash_profile file.
 ```bash
    cd ~/humdrum-tools    # or wherever humdrum-tools was downloaded.
    make install
