@@ -331,14 +331,15 @@ can be updated to the most recent versions by typing this command:
 
 ```bash
    cd `which mint | sed 's/humdrum\/bin\/mint$//'`
-   make update
-   make
+   make update     # Download any updates.
+   make            # Re-compile the programs.
 ```
 
-If you make changes to the files in the humdrum-tools directory, the above
-commands may complain if the same file has been updated in the repository.  
-Type ```git status``` to see what files have been locally modified or added 
-since you did the last update or download.
+If you make changes to the files in the humdrum-tools directory,
+the above commands may complain if the same file has been updated
+in the repository.  Type ```git status``` to see what files have
+been locally modified or added since you did the last update or
+download.
 
 
 
