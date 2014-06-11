@@ -341,5 +341,23 @@ in the repository.  Type ```git status``` to see what files have
 been locally modified or added since you did the last update or
 download.
 
+If you want to keep local changes but still update, try these commands:
+```bash
+   cd `which mint | sed 's/humdrum\/bin\/mint$//'`
+   git stash
+   make update
+   make
+   git stash apply
+```
+
+If you want to undo any local changes before updating, you can run
+this command:
+```bash
+   cd `which mint | sed 's/humdrum\/bin\/mint$//'`
+   git reset --hard HEAD^
+   make update
+   make
+```
+
 
 
