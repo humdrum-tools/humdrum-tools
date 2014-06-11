@@ -240,22 +240,15 @@ manually to the shell startup scripts as outlined below.  The startup files
 for various shells are given in the following table.  Choose the shell and 
 installation type to select the correct setup file to edit.
 
-
-|---------------------------------------------------------------------------
-| shell        | user setup file                   | system-wide setup file |
-|---------------------------------------------------------------------------
-| bash         | ~/.bash_profile, else ~/.bash_login, else ~/.profile | /etc/profile |
-|---------------------------------------------------------------------------
-| zsh          | ~/.zshenv                     | /etc/zshenv, /etc/profile |
-|---------------------------------------------------------------------------
-| tcsh         | ~/.tcshrc                                | /etc/csh.cshrc |
-|---------------------------------------------------------------------------
-| csh          | ~/.cshrc                                 | /etc/csh.cshrc |
-|---------------------------------------------------------------------------
-| ksh          | $ENV                                       | /etc/profile |
-|---------------------------------------------------------------------------
-| sh           | ~/.profile                                 | /etc/profile |
-|---------------------------------------------------------------------------
+<table cellpadding="0" cellspacing="0">
+<tr> <td> shell</td><td> user setup file </td><td> system-wide setup file </td> </tr>
+<tr> <td> bash </td><td> ~/.bash_profile, else ~/.bash_login, else ~/.profile </td><td> /etc/profile </td> </tr>
+<tr> <td> zsh  </td><td> ~/.zshenv    </td><td> /etc/zshenv, /etc/profile </td> </tr>
+<tr> <td> tcsh </td><td> ~/.tcshrc    </td><td> /etc/csh.cshrc </td> </tr>
+<tr> <td> csh  </td><td> ~/.cshrc     </td><td> /etc/csh.cshrc </td> </tr>
+<tr> <td> ksh  </td><td> $ENV         </td><td> /etc/profile </td> </tr>
+<tr> <td> sh   </td><td> ~/.profile   </td><td> /etc/profile </td> </tr>
+</table>
 
 Bash is the most common shell.  For single-user installations,
 the choice of setup file is complicated: If the file ~/.bash_profile
