@@ -112,15 +112,17 @@ Downloading
 ===========
 
 For individual user installations, the humdrum-tools repository can
-reside anywhere within a user's file structure.  The following
-instructions are for individual account installations, but system-wide
-installation will be similar, instead installing in ```/usr/local/humdrum-tools``` 
-and setting the PATH environment variable in ```/etc/profile``` or 
-similar, rather than in ```~/.bash_profile```.
+reside anywhere within a user's file structure.  For system-wide
+installation, the recommended location is ```/usr/local/humdrum-tools```.
+The following instructions are for individual account installations,
+but system-wide installation will be similar.  The main difference will
+the the locate of the shell startup script where the PATH will need to be
+set (see the Installing section below for setting up the PATH shell variable).
 
 To download humdrum-tools, type these commands:
 ```bash
-   cd           # Go to home directory or wherever you want to install.
+   cd           # Go to home directory or wherever you want to install,
+                # such as "cd /usr/local" for system-wide installations.
    git clone --recursive https://github.com/humdrum-tools/humdrum-tools
 ```
 The ```--recursive``` option is needed to download each of the
@@ -225,7 +227,7 @@ Or in csh or tcsh, do these commands:
 ```
 
 For a persistent installation of humdrum tools whenever you open a
-new terminal, the PATH environment variable needs to be emended
+new terminal, the PATH environment variable needs to be amended
 during login with the paths of the humdrum-tools executables.  The 
 above ```PATH=``` lines must be added to the shell login script.  The
 name of this shell login file is different for different shells.  
@@ -241,7 +243,7 @@ for various shells are given in the following table.  Choose the shell and
 installation type to select the correct setup file to edit.
 
 <table cellpadding="0" cellspacing="0">
-<tr> <td> shell</td><td> user setup file </td><td> system-wide setup file </td> </tr>
+<tr> <td> <b>shell</b></td><td> <b>local user setup file</b> </td><td> <b>system-wide setup file</a> </td> </tr>
 <tr> <td> bash </td><td> ~/.bash_profile, else ~/.bash_login, else ~/.profile </td><td> /etc/profile </td> </tr>
 <tr> <td> zsh  </td><td> ~/.zshenv    </td><td> /etc/zshenv, /etc/profile </td> </tr>
 <tr> <td> tcsh </td><td> ~/.tcshrc    </td><td> /etc/csh.cshrc </td> </tr>
@@ -306,7 +308,7 @@ the above command should display something like this:
 ```
 
 You can also use the *which* command to see where a command is located.  
-If the humdrum-tools command pathes are set up correctly, then the following
+If the humdrum-tools command paths are set up correctly, then the following
 commands:
 ```bash
    which key
