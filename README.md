@@ -63,10 +63,10 @@ and there is also a
 (**HUG) for announcements and questions.
 
 Topics discussed below:
-* [Downloading](#downloading) -- How to download humdrum-tools.
-* [Compiling](#compiling) -- How to compile humdrum-tools.
-* [Installing](#installing) -- How to install humdrum-tools.
-* [Updating](#updating) -- How to update humdrum-tools.
+* [Downloading](#downloading) &mdash; How to download humdrum-tools.
+* [Compiling](#compiling) &mdash; How to compile humdrum-tools.
+* [Installing](#installing) &mdash; How to install humdrum-tools.
+* [Updating](#updating) &mdash; How to update humdrum-tools.
 
 Installing git
 ==============
