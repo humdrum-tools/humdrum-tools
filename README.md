@@ -344,15 +344,13 @@ results to the expected output from the programs for the given options.  Here is
 a sample of the regression test display:
 
 ```
-(cd humdrum; /Applications/Xcode.app/Contents/Developer/usr/bin/make regression)
-(cd toolkit-source/regression-tests; /Applications/Xcode.app/Contents/Developer/usr/bin/make -s verbose)
+(cd humdrum; make regression)
 TEST 01 for accent: OK
 TEST 01 for assemble: OK
 TEST 01 for barks: OK
 TEST 01 for cbr: OK
 ...
-(cd humextra; /Applications/Xcode.app/Contents/Developer/usr/bin/make regression)
-(cd example; /Applications/Xcode.app/Contents/Developer/usr/bin/make regression)
+(cd humextra; make regression)
 bin/run-command-tests 
 autostem	test 001 OK	Add stems to notes in the treble clef
 autostem	test 005 OK	Add stems to notes, overwriting any which already exist.
