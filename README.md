@@ -236,8 +236,8 @@ For a persistent installation of humdrum tools whenever you open a
 new terminal, the PATH environment variable needs to be amended
 during login with the paths of the humdrum-tools executables.  The 
 above ```PATH=``` lines must be added to the shell login script.  The
-name of this shell login file is different for different shells.  
-If you type
+name of this shell login file is different for different shells.  If 
+you type:
 ```bash
    cd ~/humdrum-tools
    make install
@@ -247,7 +247,11 @@ correct file based on your login shell; otherwise, you can add the lines
 manually to the shell startup scripts as outlined below.  The command
 ```make install-hint``` will suggest the commands needed to add the 
 humdrum-tools bin directories permanently to the PATH environment 
-variable if you want to manually configure it.
+variable if you want to manually configure it.  Don't run the temporary
+installation given further above before running ```make install```, since
+this make target looks at the PATH environment variable to decide if the
+PATH needs to be updated.  Login again if you already ran the temporary
+PATH update.
 
 The initialization files for various shells are given in the following
 table.  Choose the shell and installation type to select the correct
