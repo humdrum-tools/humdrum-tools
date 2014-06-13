@@ -66,6 +66,7 @@ Topics discussed below:
 * [Downloading](#downloading) &mdash; How to download humdrum-tools.
 * [Compiling](#compiling) &mdash; How to compile humdrum-tools.
 * [Installing](#installing) &mdash; How to install humdrum-tools.
+* [Testing](#testing) &mdash; Check the the programs are behaving.
 * [Updating](#updating) &mdash; How to update humdrum-tools.
 
 Installing git
@@ -332,6 +333,42 @@ should reply something like this:
 ```
 This implies that the PATH variable contains the correct two *bin* directories
 for using humdrum-tools.
+
+
+Testing
+=======
+
+The command ```make regression``` will run regression tests for the Humdrum Toolkit
+and Humdrum Extras.  The make target will run the commands on files and compare the
+results to the expected output from the programs for the given options.  Here is
+a sample of the regression test display:
+
+```
+(cd humdrum; /Applications/Xcode.app/Contents/Developer/usr/bin/make regression)
+(cd toolkit-source/regression-tests; /Applications/Xcode.app/Contents/Developer/usr/bin/make -s verbose)
+TEST 01 for accent: OK
+TEST 01 for assemble: OK
+TEST 01 for barks: OK
+TEST 01 for cbr: OK
+...
+(cd humextra; /Applications/Xcode.app/Contents/Developer/usr/bin/make regression)
+(cd example; /Applications/Xcode.app/Contents/Developer/usr/bin/make regression)
+bin/run-command-tests 
+autostem	test 001 OK	Add stems to notes in the treble clef
+autostem	test 005 OK	Add stems to notes, overwriting any which already exist.
+barnum		test 007 OK	Numbering measures with repeat bars in the middle of the measure.
+harm2kern	test 006 OK	Seventh chords and their inversions in C Major.
+harm2kern	test 007 OK	Chord qualities with a root on C.
+myank		test 009 OK	Extract a measure, not including ending barline.
+prange		test 003 OK	Count pitches with duration weighting
+rscale		test 010 OK	Recover original rhythms from exotice rhythmic values.
+sample		test 001 OK	Sample the music every quater-note.
+```
+
+If you only want to see failed tests, run this command:
+```bash
+   make regression | grep -v OK
+```
 
 
 Updating
