@@ -6,25 +6,25 @@
 ## Filename:      ...humdrum-tools/Makefile
 ##
 ## Description: This Makefile will compile programs in the humdrum and
-##     humextra subdirectories.  You must first have gcc installed on your
-##     computer.  Type "which gcc" to verify that gcc is installed.
-##     Typically you also have to install gcc before you can run the make
-##     command which processes this file.
-##          Serval of the targets require the git program to be installed
-##     (updating, and downloading of data and documentation repositories).
-##     Type "which git" to verify that git is inatlled.  Windows users
-##     should install in the cygwin unix terminal (available from
-##     http://www.cygwin.com).
+## humextra subdirectories.  You must first have gcc installed on your
+## computer.  Type "which gcc" to verify that gcc is installed.
+##
+## Serval of the make targets require the git program to be installed
+## (updating, and downloading of data and documentation repositories).
+## Type "which git" to verify that git is inatlled.  
+##
+## Windows users should install in the cygwin unix terminal (available from
+## http://www.cygwin.com).
 ##
 ## To run this makefile, type:
-##    make.  
+##      make  
 ## This will compile the Humdrum Toolkit C programs as well as the Humdrum
 ## Extras programs.  After successful compiling, you must add the bin
-## directories to your command search path.  This can be done automatically
-## with the command:
-##     make install 
+## directories to your command search path to use in other directories.  
+## This can be done automatically with the command:
+##       make install 
 ## if you are installing humdurm-tools in a singler user account. Or type:
-##     make install-hints
+##       make install-hints
 ## To list the commands necessary to install humdrum-tools manually.
 ## 
 ## Super-users installing humdrum-tools for all users should add these
@@ -229,6 +229,7 @@ ifeq ($(wildcard humdrum/Makefile),)
 	@echo "***    [0;32mmake update[0;31m"
 	@echo "*** before continuing."
 	@echo "[0m"
+	exit 1
 endif
 
 
@@ -245,6 +246,7 @@ ifeq ($(wildcard humextra/Makefile),)
 	@echo "***    [0;32mgit update --init --recursive[0;31m"
 	@echo "*** before continuing."
 	@echo "[0m"
+	exit 1
 endif
 
 
@@ -319,7 +321,7 @@ install-humdrum: humdrum-install
 humdrum-install:
 ifneq ($(SHELLSCRIPT),)
    ifeq ($(HUMDRUM_PATH),)
-	echo \"$(HUMDRUMINSTALL)\" >> $(SHELLSCRIPT)
+	echo $(HUMDRUMINSTALL) >> $(SHELLSCRIPT)
 	@echo "[0;32m"
 	@echo "*** `pwd`/humdrum/bin added to command search path"
 	@echo "*** in $(SHELLSCRIPT).  Now either close this shell and restart"
@@ -334,7 +336,7 @@ ifneq ($(SHELLSCRIPT),)
 	@echo "[0m"
    else 
       ifneq ($(HUMDRUM_PATH),$(HUMDRUM_TARGET))
-	echo \"$(HUMDRUMINSTALL)\" >> $(SHELLSCRIPT)
+	echo $(HUMDRUMINSTALL) >> $(SHELLSCRIPT)
 	@echo "[0;31m"
 	@echo "*** `pwd`/humdrum/bin added to command search path"
 	@echo "*** in $(SHELLSCRIPT).  A different humdrum/bin directory already"
@@ -363,7 +365,7 @@ install-humextra: humextra-install
 humextra-install:
 ifneq ($(SHELLSCRIPT),)
    ifeq ($(HUMEXTRA_PATH),)
-	echo \"$(HUMEXTRAINSTALL)\" >> $(SHELLSCRIPT)
+	echo $(HUMEXTRAINSTALL) >> $(SHELLSCRIPT)
 	@echo "[0;32m"
 	@echo "*** `pwd`/humextra/bin added to command search path"
 	@echo "*** in $(SHELLSCRIPT).  Now either close this shell and restart"
@@ -371,14 +373,14 @@ ifneq ($(SHELLSCRIPT),)
 	@echo "***     [0;31msource $(SHELLSCRIPT)[0;32m"
 	@echo "*** to update the \$$PATH environmental variable in the current"
 	@echo "*** shell.  Then type:"
-	@echo "***     [0;31mwhich census[0;32m"
+	@echo "***     [0;31mwhich keycor[0;32m"
 	@echo "*** to verify that the Humdrum Tools are accessible."
 	@echo "*** The computer should reply to the above command with this string:"
-	@echo "***     [0;31m`pwd`/humextra/bin/census[0;32m"
+	@echo "***     [0;31m`pwd`/humextra/bin/keycor[0;32m"
 	@echo "[0m"
    else 
       ifneq ($(HUMEXTRA_PATH),$(HUMEXTRA_TARGET))
-	echo \"$(HUMEXTRAINSTALL)\" >> $(SHELLSCRIPT)
+	echo $(HUMEXTRAINSTALL) >> $(SHELLSCRIPT)
 	@echo "[0;31m"
 	@echo "*** `pwd`/humextra/bin added to command search path"
 	@echo "*** in $(SHELLSCRIPT).  A different humextra/bin directory already"
@@ -389,10 +391,10 @@ ifneq ($(SHELLSCRIPT),)
 	@echo "***     [0;32msource $(SHELLSCRIPT)[0;31m"
 	@echo "*** to update the \$$PATH environmental variable in the current shell."
 	@echo "*** Then type:"
-	@echo "***     [0;32mwhich census[0;31m"
+	@echo "***     [0;32mwhich keycor[0;31m"
 	@echo "*** to verify that the Humdrum Tools are accessible."
 	@echo "*** The computer should reply to the above command with this string:"
-	@echo "***     [0;32m`pwd`/humextra/bin/census[0;31m"
+	@echo "***     [0;32m`pwd`/humextra/bin/keycor[0;31m"
 	@echo "[0m"
       else
 	@echo
@@ -408,7 +410,6 @@ endif
 ##
 ## See of the command path is found in $PATH.
 ##
-
 
 install-hints: checkpath
 installhints:  checkpath

@@ -62,6 +62,10 @@ and there is also a
 [Humdrum Users Group](https://groups.google.com/d/forum/starstarhug) 
 (**HUG) for announcements and questions.
 
+* [Downloading](#Downloading) -- How to download humdrum-tools.
+* [Compiling](#Compiling) -- How to compile humdrum-tools.
+* [Installing](#Installing) -- How to install humdrum-tools.
+* [Updating](#Updating) -- How to update humdrum-tools.
 
 Installing git
 ==============
@@ -112,11 +116,11 @@ Downloading
 ===========
 
 For individual user installations, the humdrum-tools repository can
-reside anywhere within a user's file structure.  For system-wide
+reside anywhere within a user's home directory.  For system-wide
 installation, the recommended location is ```/usr/local/humdrum-tools```.
 The following instructions are for individual account installations,
 but system-wide installation will be similar.  The main difference will
-the the locate of the shell startup script where the PATH will need to be
+be the location of the shell startup script where the PATH needs to be
 set (see the Installing section below for setting up the PATH shell variable).
 
 To download humdrum-tools, type these commands:
@@ -153,11 +157,11 @@ for off-line use with these commands:
    git clone https://github.com/humdrum-tools/humdrum-tools.github.io humdrum-documentation
 ```
 
-Note that the humdurm-tools repository cannot be downloaded in a
-very useful format from the ZIP link on the Github website since
-the included repositories for each composer will not be included
-in that ZIP file.  GitHub may allow submodule inclusion in their
-ZIP downloads in the future.
+Note that the humdurm-tools and humdrum-data repositories cannot
+be downloaded in a very convenient format from the ZIP link on the
+Github website since repository submodules will not be included in
+the ZIP file.  GitHub may allow submodule inclusion in their ZIP
+downloads in the future.
 
 
 Compiling 
@@ -172,8 +176,7 @@ type ```make``` inside of the humdrum directory:
 
 Note that to use the ```make``` command or ```gcc``` for compiling
 the C/C++ programs, these must already be installed.  Check to see if
-gcc is installed by typing this command (gcc installation includes
-the <em>make</em> command as well):
+gcc is installed by typing these commands:
 ````bash
    which gcc
    which make
@@ -183,29 +186,30 @@ and ```/usr/bin/make```.
 
 If gcc is not installed, then you will have to figure out how to
 install it on your computer first.  Linux/Unix computers usually
-have it pre-installed with the operating system; if not, then typing
-```sudo yum install gcc``` or ```sudo apt-get install gcc``` will
-typically install it.  Apple OS X does not include it by default,
-so you will have to install it.  If you are using OS X Mavericks
-or later, then type ```xcode-select --install``` to install the
-Xcode command line tools. The ```make``` command will be installed
-at the same time that ```gcc``` is installed.  Cygwin users would
-have to re-run the installation program and include the compile
-tools if gcc was not initially installed with cygwin (a minimal
-installation will not include gcc).
+have it pre-installed along with the operating system; if not, then
+typing ```sudo yum install gcc``` or ```sudo apt-get install gcc```
+will typically install it.  Apple OS X does not include it by
+default, so you will have to install it.  If you are using OS X
+Mavericks or later, then type ```xcode-select --install``` to install
+the Xcode command line tools, which includes *gcc* (or actually a
+similar compiler).  The ```make``` command will be installed at the
+same time that ```gcc``` is installed.  Cygwin users would have to
+re-run the installation program and include the compile tools if
+gcc was not initially installed with cygwin (a minimal installation
+will not include gcc).
 
 
 Installing
 ==========
 
 To use humdrum-tools commands within any directory, you must add the
-humdrum/bin and humextra/bin directories to the PATH environmental variable.  
-First, determine the shell (unix command-line interpreter) which you
-are using in the terminal by running this command:
+humdrum/bin and humextra/bin directories to the PATH environmental 
+variable.  First, determine the shell (unix command-line interpreter) 
+which you are using in the terminal by running this command:
     ```echo $SHELL```
 For bash shells (most common shell), the above command should reply
 with the text ```/bin/bash```.  If you are using another shell,
-*bash* will be replaced with the name of the shell you are using.
+"*bash*" will be replaced with the name of the shell you are using.
 
 To temporarily adjust the PATH variable so that you can immediately 
 start using the tools in the current terminal session, here are the two
@@ -238,9 +242,14 @@ If you type
 ```
 then the humdrum-tools makefile will attempt to place those lines in the
 correct file based on your login shell; otherwise, you can add the lines
-manually to the shell startup scripts as outlined below.  The startup files
-for various shells are given in the following table.  Choose the shell and 
-installation type to select the correct setup file to edit.
+manually to the shell startup scripts as outlined below.  The command
+```make install-hint``` will suggest the commands needed to add the 
+humdrum-tools bin directories permanently to the PATH environment 
+variable if you want to manually configure it.
+
+The initialization files for various shells are given in the following
+table.  Choose the shell and installation type to select the correct
+setup file to edit.
 
 <table cellpadding="0" cellspacing="0">
 <tr> <td> <b>shell</b></td><td> <b>local user setup file</b> </td><td> <b>system-wide setup file</a> </td> </tr>
@@ -252,22 +261,23 @@ installation type to select the correct setup file to edit.
 <tr> <td> sh   </td><td> ~/.profile   </td><td> /etc/profile </td> </tr>
 </table>
 
-Bash is the most common shell.  For single-user installations,
-the choice of setup file is complicated: If the file ~/.bash_profile
-exists, then the bash shell will read that file.  If ~/.bash_profile
-does not exists, then bash will instead try to read ~/.bash_login.
-If ~/.bash_login does not exist, then bash will try to read ~/.profile.
-Only one of those files will be read, and ~/.bash_profile is the
-first one bash will try to read.  Note that if there is currently
-a ~/.profile file but no ~/.bash_profile, the settings in ~/.profile
-will be ignored if you create the ~/.bash_profile file.
+Bash is the most common shell.  For single-user installations, the
+choice of setup file is complicated: If the file ~/.bash_profile
+exists ("~" is unix shorthand for your home directory), then the
+bash shell will read that file.  If ~/.bash_profile does not exist,
+then bash will instead try to read ~/.bash_login.  If ~/.bash_login
+does not exist, then bash will try to read ~/.profile.  Only one
+of those files will be read, and ~/.bash_profile is the first one
+bash that will try to read.  Note that if there is currently a ~/.profile
+file but no ~/.bash_profile, the settings in ~/.profile will be
+ignored if you create the ~/.bash_profile file.
 
 For system-wide installations, super-users will have to add the
 ```PATH=``` lines to the correct file within the ```/etc/```
 directory.  Super-users can usually install for all users 
 on a computer system in any common shell by running these commands:
 ```bash
-   cd ~/humdrum-tools    # or wherever humdrum-tools was downloaded.
+   cd /usr/local/humdrum-tools    # or wherever humdrum-tools was downloaded.
 # bash, sh, ksh, and zsh
    sudo echo "export PATH=`pwd`/humdrum/bin:$PATH" >> /etc/profile
    sudo echo "export PATH=`pwd`/humextra/bin:$PATH" >> /etc/profile
@@ -277,8 +287,8 @@ on a computer system in any common shell by running these commands:
 ```
 
 Many linux systems have a directory called ```/etc/profile.d``` into which
-package-specific settings are placed rather than altering ```/etc/profile```.  
-If so, then for bash-like shells, create a file in that directory with the PATH 
+package-specific settings are placed rather than altering ```/etc/profile```.  If so, 
+then for bash-like shells, create a file in that directory with the PATH 
 variable updates rather than editing the /etc/profile file:
 ```bash
    if [ -e /etc/profile.d ]
@@ -293,7 +303,7 @@ variable updates rather than editing the /etc/profile file:
 
 
 To verify that the PATH lines were added to the correct file, try
-opening a new terminal window and typing:
+opening a new terminal window and type:
 
 ```bash
    echo $PATH | tr : '\n' | grep humdrum
@@ -327,11 +337,11 @@ Updating
 ========
 
 Software (and data if installed with ```make data```) periodically 
-can be updated to the most recent versions by typing this command:
+can be updated to the most recent versions by typing these commands:
 
 ```bash
    cd `which mint | sed 's/humdrum\/bin\/mint$//'`
-   make update     # Download any updates.
+   make update     # Download any updates from GitHub.
    make            # Re-compile the programs.
 ```
 
