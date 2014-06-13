@@ -293,7 +293,7 @@ on a computer system in any common shell by running these commands:
 ```
 
 Many linux systems have a directory called ```/etc/profile.d``` into which
-package-specific settings are placed rather than altering ```/etc/profile```.  If so, 
+package-specific shell settings are placed rather than altering ```/etc/profile```.  If so, 
 then for bash-like shells, create a file in that directory with the PATH 
 variable updates rather than editing the /etc/profile file:
 ```bash
