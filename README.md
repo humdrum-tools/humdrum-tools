@@ -66,7 +66,7 @@ Topics discussed below:
 * [Downloading](#downloading) &mdash; How to download humdrum-tools.
 * [Compiling](#compiling) &mdash; How to compile humdrum-tools.
 * [Installing](#installing) &mdash; How to install humdrum-tools.
-* [Testing](#testing) &mdash; Check the the programs are behaving.
+* [Testing](#testing) &mdash; Check that the programs are behaving.
 * [Updating](#updating) &mdash; How to update humdrum-tools.
 
 Installing git
@@ -159,7 +159,7 @@ for off-line use with these commands:
    git clone https://github.com/humdrum-tools/humdrum-tools.github.io humdrum-documentation
 ```
 
-Note that the humdurm-tools and humdrum-data repositories cannot
+Note that the humdrum-tools and humdrum-data repositories cannot
 be downloaded in a very convenient format from the ZIP link on the
 Github website since repository submodules will not be included in
 the ZIP file.  GitHub may allow submodule inclusion in their ZIP
@@ -363,8 +363,8 @@ harm2kern	test 006 OK	Seventh chords and their inversions in C Major.
 harm2kern	test 007 OK	Chord qualities with a root on C.
 myank		test 009 OK	Extract a measure, not including ending barline.
 prange		test 003 OK	Count pitches with duration weighting
-rscale		test 010 OK	Recover original rhythms from exotice rhythmic values.
-sample		test 001 OK	Sample the music every quater-note.
+rscale		test 010 OK	Recover original rhythms from exotic rhythmic values.
+sample		test 001 OK	Sample the music every quarter-note.
 ```
 
 If you only want to see failed tests, run this command:
