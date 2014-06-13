@@ -368,6 +368,12 @@ If you only want to see failed tests, run this command:
    make regression | grep -v OK
 ```
 
+Failed regression tests (along with information about your computer
+setup) should be reported
+[here](https://github.com/humdrum-tools/humdrum/issues) for the
+Humdrum Toolkit, and [here](https://github.com/craigsapp/humextra/issues)
+for Humdrum Extras.
+
 
 Updating
 ========
