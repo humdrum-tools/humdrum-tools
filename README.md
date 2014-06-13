@@ -62,10 +62,11 @@ and there is also a
 [Humdrum Users Group](https://groups.google.com/d/forum/starstarhug) 
 (**HUG) for announcements and questions.
 
-* [Downloading](#Downloading) -- How to download humdrum-tools.
-* [Compiling](#Compiling) -- How to compile humdrum-tools.
-* [Installing](#Installing) -- How to install humdrum-tools.
-* [Updating](#Updating) -- How to update humdrum-tools.
+Topics discussed below:
+* [Downloading](#downloading) -- How to download humdrum-tools.
+* [Compiling](#compiling) -- How to compile humdrum-tools.
+* [Installing](#installing) -- How to install humdrum-tools.
+* [Updating](#updating) -- How to update humdrum-tools.
 
 Installing git
 ==============
@@ -164,7 +165,7 @@ the ZIP file.  GitHub may allow submodule inclusion in their ZIP
 downloads in the future.
 
 
-Compiling 
+Compiling
 =========
 
 To compile programs in the two humdrum-tools submodules,
