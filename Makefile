@@ -142,6 +142,7 @@ data: checkgit
 	git submodule update --init --recursive
 
 
+removedata: remove-data
 remove-data: checkgit
 ifneq ($(VALUE2),)
 	-git submodule deinit -f data
@@ -171,9 +172,10 @@ doc: checkgit
 	git submodule add -f https://github.com/humdrum-tools/humdrum-tools.github.io doc
 	git submodule update --init --recursive
 
-
+removedoc:     remove-doc
 remove-webdoc: remove-doc
-remove-doc: checkgit
+removewebdoc:  remove-doc
+remove-doc:    checkgit
 ifneq ($(VALUE4),)
 	-git submodule deinit -f doc
 	-git rm --cached doc
@@ -298,6 +300,9 @@ endif
 ##
 
 clean: humdrum-clean humextra-clean remove-data remove-doc
+
+
+remove: remove-data remove-doc
 
 
 humdrum-clean:
