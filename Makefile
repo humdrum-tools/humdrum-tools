@@ -545,3 +545,22 @@ endif
 
 
 
+###########################################################################
+##
+## Make humplay by first downloading and compiling improv library.
+##
+
+humplay: improv-clone improv-library
+	(cd humextra; make humplay)
+
+improv-library:
+	(cd improv; $(MAKE) library)
+
+improv-clone:
+	if [ ! -d improv ]; \
+	then \
+		git clone https://github.com/craigsapp/improv; \
+	fi
+
+
+
