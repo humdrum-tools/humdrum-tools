@@ -4,6 +4,3 @@
 [submodule "humdrum"]
 	path = humdrum
 	url = https://github.com/humdrum-tools/humdrum.git
-[submodule "data"]
-	path = data
-	url = https://github.com/humdrum-tools/humdrum-data
