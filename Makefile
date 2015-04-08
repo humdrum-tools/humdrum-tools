@@ -103,7 +103,7 @@ endif
 ##   installs only).
 ##
 
-all: check-recursive humdrum-compile humextra-compile checkpath
+all: check-recursive humdrum-compile improv-compile humextra-compile checkpath
 
 
 
@@ -206,6 +206,9 @@ ifneq ($(wildcard .gitmodules),)
 	git submodule update --init --recursive
 	git submodule foreach "(git checkout master; git pull origin master)"
 endif
+ifneq ($(wildcard improv),) 
+	(cd improv && git pull)
+endif
 
 
 
@@ -302,7 +305,7 @@ man:
 ## Cleaning targets
 ##
 
-clean: humdrum-clean humextra-clean remove-data remove-doc
+clean: humdrum-clean humextra-clean improv-clean remove-data remove-doc
 
 
 remove: remove-data remove-doc
@@ -552,6 +555,16 @@ endif
 
 humplay: improv-clone improv-library
 	(cd humextra; make humplay)
+
+improv-compile:
+ifneq ($(wildcard improv),)
+	(cd improv && make clean && make library)
+endif
+
+improv-clean:
+ifneq ($(wildcard improv),)
+	(cd improv && make superclean)
+endif
 
 improv-library:
 	(cd improv; $(MAKE) library)
