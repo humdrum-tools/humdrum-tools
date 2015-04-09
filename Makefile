@@ -2,36 +2,49 @@
 ##
 ## Programmer:    Craig Stuart Sapp <craig@ccrma.stanford.edu>
 ## Creation Date: Mon May 26 15:55:09 PDT 2014
-## Last Modified: Thu Jun 12 01:20:27 PDT 2014
+## Last Modified: Thu Apr  9 05:23:53 PDT 2015
 ## Filename:      ...humdrum-tools/Makefile
 ##
-## Description: This Makefile will compile programs in the humdrum and
-## humextra subdirectories.  You must first have gcc installed on your
-## computer.  Type "which gcc" to verify that gcc is installed.
+## Description:
 ##
-## Serval of the make targets require the git program to be installed
+## This Makefile will compile programs in the humdrum and humextra
+## subdirectories.  You must first have gcc installed on your computer.
+## Type "which gcc" to verify that gcc is installed.  On OS X computers
+## you can typically install gcc with the command:
+##      xcode-select --install
+## which will install compiles tools in /Library/Developer/CommandLineTools
+## including git, gcc, and make.  Most linux computers come with gcc
+## already installed; otherwise, one of the two commands may install it:
+##    apt-get install gcc
+##    yum install gcc
+##
+## Several of the make targets require the git program to be installed
 ## (updating, and downloading of data and documentation repositories).
-## Type "which git" to verify that git is inatlled.  
-##
+## Type "which git" to verify that git is installed.  Installing command-line
+## tools in OS X with xcode-select will also install git.  If git is not
+## available in linux, then either of these commands may install it:
+##    apt-get install git
+##    yum install git
 ## Windows users should install in the cygwin unix terminal (available from
-## http://www.cygwin.com).
+## http://www.cygwin.com).  Install gcc and git packages when installing.
+##
 ##
 ## To run this makefile, type:
-##      make  
+##      make
 ## This will compile the Humdrum Toolkit C programs as well as the Humdrum
 ## Extras programs.  After successful compiling, you must add the bin
-## directories to your command search path to use in other directories.  
+## directories to your command search path to use in other directories.
 ## This can be done automatically with the command:
-##       make install 
-## if you are installing humdurm-tools in a singler user account. Or type:
+##       make install
+## if you are installing humdrum-tools in a single user account. Or type:
 ##       make install-hints
 ## To list the commands necessary to install humdrum-tools manually.
-## 
+##
 ## Super-users installing humdrum-tools for all users should add these
 ## lines to /etc/profile, or a create shell script with these lines
 ## in the startup script for your shell, assuming that
 ## /usr/local/humdrum-tools is the installation location of humdrum-tools.
-## 
+##
 ## For bash, sh, ksh, and zsh add these lines to /etc/profile:
 ##    export PATH=/usr/local/humdrum-tools/humdrum/bin:$PATH
 ##    export PATH=/usr/local/humdrum-tools/humextra/bin:$PATH
@@ -41,7 +54,7 @@
 ##
 
 # Targets which don't actually refer to files:
-.PHONY : humextra humdrum data doc help
+.PHONY : humextra humdrum data doc help improv
 
 # Variables used to give hints about setup for $PATH environmental variable:
 HUMEXTRA_PATH   := $(shell echo $$PATH |tr : '\n'|grep 'humextra/bin'|head -n 1)
@@ -59,7 +72,7 @@ VALUE4 := $(shell if [ ! -z $(VALUE3) ]; then echo "$(VALUE3)+2" | bc; fi)
 
 # Variables needed for install and install-hints targets:
 USERSHELL = $(shell echo $$SHELL | sed 's/.*\///')
-SHELLSCRIPT = 
+SHELLSCRIPT =
 ifeq ($(USERSHELL),bash)
    ifneq ($(wildcard ~/.bash_profile),)
       SHELLSCRIPT = ~/.bash_profile
@@ -97,13 +110,13 @@ endif
 
 ###########################################################################
 ##
-## Default target will compile humdrum and humexra packages.  Type
+## Default target will compile humdrum and humextra packages.  Type
 ##   "make install" to add the command directories for each to the
-##   PATH environmental variable within ~/.profile (for single-user 
+##   PATH environmental variable within ~/.profile (for single-user
 ##   installs only).
 ##
 
-all: check-recursive humdrum-compile improv-compile humextra-compile checkpath
+all: check-recursive humdrum-compile improv-library humextra-compile checkpath
 
 
 
@@ -134,37 +147,27 @@ help:
 
 ###########################################################################
 ##
-## Targets for adding/removing data repository 
+## Targets for adding/removing data repository
 ##
 
 data: checkgit
-	git submodule add -f https://github.com/humdrum-tools/humdrum-data data
-	git submodule update --init --recursive
-
-
-removedata: remove-data
-remove-data: checkgit
-ifneq ($(VALUE2),)
-	-git submodule deinit -f data
-	-git rm --cached data
-	-rm -rf data
-	-rm -rf .git/modules/data
-	cat .gitmodules | sed '$(VALUE1),$(VALUE2)d' > .gitmodules-temp
-	-mv .gitmodules-temp .gitmodules
+ifeq ($(wildcard data),)
+	git clone https://github.com/humdrum-tools/humdrum-data data
+	(cd data && git submodule update --init --recursive)
 endif
-	-if [ -r .gitmodules ]; \
-	 then \
-            if [ `wc -l .gitmodules | sed 's/^ *//; s/ .*//'` == "0" ]; \
-            then \
-               rm .gitmodules; \
-            fi; \
-         fi
+
+
+# Now, just use "rm -rf data" to delete the data directory.  Be careful that
+# you do not have any of your own files in the data directory before deleting.
+removedata: remove-data
+remove-data:
+	rm -ri data
 
 
 
 ###########################################################################
 ##
-## Targets for adding/removing Humdrum website documentation 
+## Targets for adding/removing Humdrum website documentation
 ##
 
 webdoc: doc
@@ -196,17 +199,22 @@ endif
 
 ###########################################################################
 ##
-## Update all submodules to their respective master versions 
+## Update all submodules to their respective master versions
 ##
 
 pull: update
 update: checkgit
 	git pull
-ifneq ($(wildcard .gitmodules),) 
+ifneq ($(wildcard .gitmodules),)
 	git submodule update --init --recursive
 	git submodule foreach "(git checkout master; git pull origin master)"
 endif
-ifneq ($(wildcard improv),) 
+ifneq ($(wildcard data),)
+	(cd data && git pull)
+	(cd data && git submodule update --init --recursive
+	(cd data && git submodule foreach "(git checkout master; git pull origin master)")
+endif
+ifneq ($(wildcard improv),)
 	(cd improv && git pull)
 endif
 
@@ -214,7 +222,7 @@ endif
 
 ###########################################################################
 ##
-## Make sure that the submodules are present for humdrum and humextra 
+## Make sure that the submodules are present for humdrum and humextra
 ##    If not, then download them.
 ##
 
@@ -345,7 +353,7 @@ ifneq ($(SHELLSCRIPT),)
 	@echo "*** The computer should reply to the above command with this string:"
 	@echo "***     [0;31m`pwd`/humdrum/bin/census[0;32m"
 	@echo "[0m"
-   else 
+   else
       ifneq ($(HUMDRUM_PATH),$(HUMDRUM_TARGET))
 	echo $(HUMDRUMINSTALL) >> $(SHELLSCRIPT)
 	@echo "[0;31m"
@@ -389,7 +397,7 @@ ifneq ($(SHELLSCRIPT),)
 	@echo "*** The computer should reply to the above command with this string:"
 	@echo "***     [0;31m`pwd`/humextra/bin/keycor[0;32m"
 	@echo "[0m"
-   else 
+   else
       ifneq ($(HUMEXTRA_PATH),$(HUMEXTRA_TARGET))
 	echo $(HUMEXTRAINSTALL) >> $(SHELLSCRIPT)
 	@echo "[0;31m"
@@ -439,7 +447,7 @@ ifneq ($(SHELLSCRIPT),)
 	@echo "*** or type '[0;32mmake install[0;31m' to have this Makefile do this for you."
 	@echo "*** Then type \"[0;32msource $(SHELLSCRIPT)[0;31m\" or relogin."
 	@echo "[0m"
-   else 
+   else
       ifneq ($(HUMDRUM_PATH),$(HUMDRUM_TARGET))
 	@echo "[0;31m"
 	@echo "*** For a single-user installation of the Humdrum Toolkit, type this command:"
@@ -478,7 +486,7 @@ ifneq ($(SHELLSCRIPT),)
 	@echo "***    [0;32mecho \"PATH=`pwd`/humextra/bin:\$$PATH\" >> $(SHELLSCRIPT)[0;31m"
 	@echo "*** or type '[0;32mmake install[0;31m' to have this Makefile do this for you."
 	@echo "[0m"
-   else 
+   else
       ifneq ($(HUMEXTRA_PATH),$(HUMEXTRA_TARGET))
 	@echo "[0;31m"
 	@echo "*** For a single-user installation of Humdrum Extras, type this command:"
@@ -526,7 +534,7 @@ humdrum-regression:
 
 ###########################################################################
 ##
-## When doing certain targets, git is presumed to be installed, and 
+## When doing certain targets, git is presumed to be installed, and
 ##   is presumed to be the method of downloading the repository.
 ##
 
@@ -556,9 +564,9 @@ endif
 humplay: improv-clone improv-library
 	(cd humextra; make humplay)
 
-improv-compile:
+improv-library: improv-clone
 ifneq ($(wildcard improv),)
-	(cd improv && make clean && make library)
+	-(cd improv && make clean && make library)
 endif
 
 improv-clean:
@@ -566,14 +574,10 @@ ifneq ($(wildcard improv),)
 	(cd improv && make superclean)
 endif
 
-improv-library:
-	(cd improv; $(MAKE) library)
-
 improv-clone:
-	if [ ! -d improv ]; \
-	then \
-		git clone https://github.com/craigsapp/improv; \
-	fi
+ifeq ($(wildcard improv),)
+	git clone https://github.com/craigsapp/improv
+endif
 
 
 
