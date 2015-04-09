@@ -561,13 +561,11 @@ endif
 ## Make humplay by first downloading and compiling improv library.
 ##
 
-humplay: improv-clone improv-library
+humplay: improv-library
 	(cd humextra; make humplay)
 
 improv-library: improv-clone
-ifneq ($(wildcard improv),)
 	-(cd improv && make clean && make library)
-endif
 
 improv-clean:
 ifneq ($(wildcard improv),)
