@@ -161,7 +161,7 @@ endif
 # you do not have any of your own files in the data directory before deleting.
 removedata: remove-data
 remove-data:
-	rm -ri data
+	-rm -ri data
 
 
 
