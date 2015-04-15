@@ -295,17 +295,15 @@ man:
 
 clean: humdrum-clean humextra-clean improv-clean
 
+clean: humdrum-clean humextra-clean improv-clean remove
 
-remove: remove-data remove-doc
-
+remove-extras: remove-data remove-doc remove-improv
 
 humdrum-clean:
 	(cd humdrum; $(ENV) $(MAKE) clean)
 
-
 humextra-clean:
 	(cd humextra; $(ENV) $(MAKE) clean)
-
 
 
 ###########################################################################
@@ -545,6 +543,9 @@ endif
 humplay: improv-library
 	(cd humextra; make humplay)
 
+improv: improv-library
+	(cd improv; make programs)
+
 improv-library: improv-clone
 	-(cd improv && make clean && make library)
 
@@ -558,5 +559,7 @@ ifeq ($(wildcard improv),)
 	git clone https://github.com/craigsapp/improv
 endif
 
+remove-improv:
+	-rm -rf improv
 
 
