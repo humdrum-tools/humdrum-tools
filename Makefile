@@ -293,7 +293,7 @@ man:
 ## Cleaning targets
 ##
 
-clean: humdrum-clean humextra-clean improv-clean remove-data remove-doc
+clean: humdrum-clean humextra-clean improv-clean
 
 
 remove: remove-data remove-doc
