@@ -2,7 +2,7 @@
 ##
 ## Programmer:    Craig Stuart Sapp <craig@ccrma.stanford.edu>
 ## Creation Date: Mon May 26 15:55:09 PDT 2014
-## Last Modified: Thu Apr  9 05:23:53 PDT 2015
+## Last Modified: Wed Apr 15 12:15:19 PDT 2015
 ## Filename:      ...humdrum-tools/Makefile
 ##
 ## Description:
@@ -17,6 +17,9 @@
 ## already installed; otherwise, one of the two commands may install it:
 ##    apt-get install gcc
 ##    yum install gcc
+## and maybe also:
+##    apt-get install make
+##    yum install make
 ##
 ## Several of the make targets require the git program to be installed
 ## (updating, and downloading of data and documentation repositories).
@@ -54,21 +57,13 @@
 ##
 
 # Targets which don't actually refer to files:
-.PHONY : humextra humdrum data doc help improv
+.PHONY : humextra humdrum help improv
 
 # Variables used to give hints about setup for $PATH environmental variable:
 HUMEXTRA_PATH   := $(shell echo $$PATH |tr : '\n'|grep 'humextra/bin'|head -n 1)
 HUMEXTRA_TARGET := $(shell echo `pwd`/humextra/bin)
 HUMDRUM_PATH    := $(shell echo $$PATH |tr : '\n'|grep 'humdrum/bin'|head -n 1)
 HUMDRUM_TARGET  := $(shell echo `pwd`/humdrum/bin)
-
-# Variables needed for remove-data target:
-VALUE1 := $(shell if [ -r .gitmodules ]; then grep -A2 -n -m1 '^\[submodule "data"\]' .gitmodules | sed 's/[^0-9].*//'; fi)
-VALUE2 := $(shell if [ ! -z $(VALUE1) ]; then echo "$(VALUE1)+2" | bc; fi)
-
-# Variables needed for remove-doc target:
-VALUE3 := $(shell if [ -r .gitmodules ]; then grep -A2 -n -m1 '^\[submodule "doc"\]' .gitmodules | sed 's/[^0-9].*//'; fi)
-VALUE4 := $(shell if [ ! -z $(VALUE3) ]; then echo "$(VALUE3)+2" | bc; fi)
 
 # Variables needed for install and install-hints targets:
 USERSHELL = $(shell echo $$SHELL | sed 's/.*\///')
@@ -157,7 +152,7 @@ ifeq ($(wildcard data),)
 endif
 
 
-# Now, just use "rm -rf data" to delete the data directory.  Be careful that
+# Use "rm -rf data" to delete the data directory.  Be careful that
 # you do not have any of your own files in the data directory before deleting.
 removedata: remove-data
 remove-data:
@@ -172,29 +167,14 @@ remove-data:
 
 webdoc: doc
 doc: checkgit
-	git submodule add -f https://github.com/humdrum-tools/humdrum-tools.github.io doc
-	git submodule update --init --recursive
+	git clone https://github://github.com/humdrum-tools/humdrum-tools.github.io doc
+
 
 removedoc:     remove-doc
 remove-webdoc: remove-doc
 removewebdoc:  remove-doc
 remove-doc:    checkgit
-ifneq ($(VALUE4),)
-	-git submodule deinit -f doc
-	-git rm --cached doc
 	-rm -rf doc
-	-rm -rf .git/modules/doc
-	cat .gitmodules | sed '$(VALUE3),$(VALUE4)d' > .gitmodules-temp
-	-mv .gitmodules-temp .gitmodules
-endif
-	-if [ -r .gitmodules ]; \
-	 then \
-            if [ `wc -l .gitmodules | sed 's/^ *//; s/ .*//'` == "0" ]; \
-            then \
-               rm .gitmodules; \
-            fi; \
-         fi
-
 
 
 ###########################################################################
@@ -559,6 +539,7 @@ endif
 ###########################################################################
 ##
 ## Make humplay by first downloading and compiling improv library.
+## Improv library will eventually be moved to humdrum-tools/humextra/external/improv.
 ##
 
 humplay: improv-library
