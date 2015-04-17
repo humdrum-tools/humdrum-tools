@@ -295,9 +295,10 @@ man:
 
 clean: humdrum-clean humextra-clean improv-clean
 
-clean: humdrum-clean humextra-clean improv-clean remove
+super-clean: superclean
+superclean: humdrum-clean humextra-clean improv-clean remove-other
 
-remove-extras: remove-data remove-doc remove-improv
+remove-other: remove-data remove-doc remove-improv
 
 humdrum-clean:
 	(cd humdrum; $(ENV) $(MAKE) clean)
