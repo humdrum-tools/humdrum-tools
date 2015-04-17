@@ -111,7 +111,7 @@ endif
 ##   installs only).
 ##
 
-all: check-recursive humdrum-compile improv-library humextra-compile checkpath
+all: check-recursive humdrum-compile humextra-compile checkpath
 
 
 
@@ -194,7 +194,7 @@ ifneq ($(wildcard data),)
 	(cd data && git submodule update --init --recursive
 	(cd data && git submodule foreach "(git checkout master; git pull origin master)")
 endif
-ifneq ($(wildcard improv),)
+ifneq ($(wildcard humextra/external/improv),)
 	(cd improv && git pull)
 endif
 
@@ -293,12 +293,12 @@ man:
 ## Cleaning targets
 ##
 
-clean: humdrum-clean humextra-clean improv-clean
+clean: humdrum-clean humextra-clean
 
 super-clean: superclean
-superclean: humdrum-clean humextra-clean improv-clean remove-other
+superclean: humdrum-clean humextra-clean remove-other
 
-remove-other: remove-data remove-doc remove-improv
+remove-other: remove-data remove-doc
 
 humdrum-clean:
 	(cd humdrum; $(ENV) $(MAKE) clean)
@@ -532,35 +532,5 @@ ifeq ($(wildcard .git),)
 	@echo "[0m"
 	exit 1
 endif
-
-
-
-###########################################################################
-##
-## Make humplay by first downloading and compiling improv library.
-## Improv library will eventually be moved to humdrum-tools/humextra/external/improv.
-##
-
-humplay: improv-library
-	(cd humextra; make humplay)
-
-improv: improv-library
-	(cd improv; make programs)
-
-improv-library: improv-clone
-	-(cd improv && make clean && make library)
-
-improv-clean:
-ifneq ($(wildcard improv),)
-	(cd improv && make superclean)
-endif
-
-improv-clone:
-ifeq ($(wildcard improv),)
-	git clone https://github.com/craigsapp/improv
-endif
-
-remove-improv:
-	-rm -rf improv
 
 
