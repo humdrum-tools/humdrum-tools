@@ -293,7 +293,14 @@ man:
 ## Cleaning targets
 ##
 
-clean: humdrum-clean humextra-clean
+clean: humdrum-clean humextra-clean improv-clean
+
+# Improv library moved to humextra/external/improv
+improv-clean:
+ifneq ($(wildcard improv),)
+	rm -rf improv
+endif
+
 
 super-clean: superclean
 superclean: humdrum-clean humextra-clean remove-other
