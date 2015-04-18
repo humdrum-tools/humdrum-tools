@@ -195,7 +195,7 @@ ifneq ($(wildcard data),)
 	(cd data && git submodule foreach "(git checkout master; git pull origin master)")
 endif
 ifneq ($(wildcard humextra/external/improv),)
-	(cd improv && git pull)
+	(cd humextra/external/improv && git pull)
 endif
 
 
