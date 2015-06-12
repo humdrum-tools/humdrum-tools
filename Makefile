@@ -285,7 +285,7 @@ endif
 
 
 man:
-	(cd humdrum; $(ENV) $(MAKE) man);
+	(cd humdrum; sudo $(ENV) $(MAKE) man);
 
 
 ###########################################################################
