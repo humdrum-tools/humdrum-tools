@@ -167,7 +167,7 @@ remove-data:
 
 webdoc: doc
 doc: checkgit
-	git clone https://github://github.com/humdrum-tools/humdrum-tools.github.io doc
+	git clone https://github.com/humdrum-tools/humdrum-tools.github.io doc
 
 
 removedoc:     remove-doc
