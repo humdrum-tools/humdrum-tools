@@ -197,6 +197,7 @@ endif
 ifneq ($(wildcard humextra/external/improv),)
 	(cd humextra/external/improv && git pull)
 endif
+	@echo "[0;32mNow type \"make\" to compile the update[0m"
 
 
 
