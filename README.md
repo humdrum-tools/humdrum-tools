@@ -36,6 +36,7 @@ programs without having to install any software.
 If you are lucky or a unix expert (and have *git* and *gcc* installed),
 then you can run the following commands to download
 humdrum-tools and set them up as a single-user installation:
+
 ```bash
    cd               # Go to installation directory (home directory in this example).
    git clone --recursive https://github.com/humdrum-tools/humdrum-tools
@@ -47,14 +48,15 @@ humdrum-tools and set them up as a single-user installation:
    make data	    # Download sample Humdrum data files to work with.
    make doc         # Download documentation for offline reference.
 ```
+
 Otherwise, follow the more detailed instructions below.  Super-users
 can instead configure humdrum-tools for all users on a computer by
-typically installing in ```/usr/local/humdrum-tools``` and adding
-the ```humdrum/bin``` and ```humextra/bin``` directories to the
+typically installing in `/usr/local/humdrum-tools` and adding
+the `humdrum/bin` and `humextra/bin` directories to the
 PATH environment variable in the login script for all users (which
 depends on the [shell](http://en.wikipedia.org/wiki/Unix_shell):
-```/etc/profile``` for most shells, ```/etc/zshenv``` for zsh and
-```/etc/csh.cshrc``` for csh/tcsh).
+`/etc/profile` for most shells, `/etc/zshenv` for zsh and
+`/etc/csh.cshrc` for csh/tcsh).
 
 Further documentation about the Humdrum Toolkit and Humdrum Extras 
 as well as installing and using them can be found at http://www.humdrum.org,
@@ -76,34 +78,38 @@ To download this repository, first make sure that
 [git](http://git-scm.com/book/en/Getting-Started-Git-Basics) is
 installed on your computer.  Git is a version control program which
 is the main interface to online repositories on GitHub.  To check
-if the ```git``` program is available on your computer, type the
+if the `git` program is available on your computer, type the
 following in a terminal:
+
 ```bash
    which git
 ```
-If the terminal replies with a line such as ```/usr/local/bin/git```,
+
+If the terminal replies with a line such as `/usr/local/bin/git`,
 then git is present and you can run the installation commands given
-further above.  If the ```which``` command replies with an error
+further above.  If the `which` command replies with an error
 that git cannot be found, you need to install git.  How to do this
 will depend on your operating system.  Here are installation hints
 for various computer systems:
 
 In linux, the installation command for git is usually one of these two 
 possibilities:
+
 ```bash
    sudo yum install git
    sudo apt-get install git
 ```
 
 For [cygwin](http://www.cygwin.com) on MS Windows computers, you
-should have included ```git``` when installing packages when you
+should have included `git` when installing packages when you
 first installed cygwin.  Re-run the installation program and include
-git in the package installation list if the ```which``` command does
+git in the package installation list if the `which` command does
 not find it.
 
 For Apple OS X, the easiest method is to download git from [this
 link](http://git-scm.com/download/mac).  More advanced Mac users
 can use [Homebrew](http://brew.sh) to install git with this command:
+
 ```bash
    brew install git
 ```
@@ -119,23 +125,26 @@ Downloading
 
 For individual user installations, the humdrum-tools repository can
 reside anywhere within a user's home directory.  For system-wide
-installation, the recommended location is ```/usr/local/humdrum-tools```.
+installation, the recommended location is `/usr/local/humdrum-tools`.
 The following instructions are for individual account installations,
 but system-wide installation will be similar.  The main difference will
 be the location of the shell startup script where the PATH needs to be
 set (see the Installing section below for setting up the PATH shell variable).
 
 To download humdrum-tools, type these commands:
+
 ```bash
    cd           # Go to home directory or wherever you want to install,
                 # such as "cd /usr/local" for system-wide installations.
    git clone --recursive https://github.com/humdrum-tools/humdrum-tools
 ```
-The ```--recursive``` option is needed to download each of the
+
+The `--recursive` option is needed to download each of the
 individual repositories inside of this meta-repository.
 
 Sample Humdrum file data can also be downloaded by typing the following
 command within the humdrum-tools directory:
+
 ```bash
    cd ~/humdrum-tools     # or wherever humdrum-tools was downloaded.
    make data
@@ -143,8 +152,9 @@ command within the humdrum-tools directory:
 
 If you want to download the data files outside of the humdrum-tools 
 directory (for example into a user directory when the installation
-is in ```/usr/local/humdrum-tools```) then download with this command
+is in `/usr/local/humdrum-tools`) then download with this command
 instead:
+
 ```bash
    cd
    git clone --recursive https://github.com/humdrum-tools/humdrum-data
@@ -152,6 +162,7 @@ instead:
 
 A local copy of the http://www.humdrum.org website can also be downloaded
 for off-line use with these commands:
+
 ```bash
    cd ~/humdrum-tools     # or wherever humdrum-tools was downloaded.
    make doc
@@ -170,7 +181,8 @@ Compiling
 =========
 
 To compile programs in the two humdrum-tools submodules,
-type ```make``` inside of the humdrum directory:
+type `make` inside of the humdrum directory:
+
 ```bash
     cd ~/humdrum-tools  # or wherever humdrum-tools was downloaded.
     make
@@ -179,23 +191,25 @@ type ```make``` inside of the humdrum directory:
 Note that to use the ```make``` command or ```gcc``` for compiling
 the C/C++ programs, these must already be installed.  Check to see if
 gcc is installed by typing these commands:
+
 ````bash
    which gcc
    which make
 ```
-The terminal should reply with something like ```/usr/bin/gcc```
-and ```/usr/bin/make```.  
+
+The terminal should reply with something like `/usr/bin/gcc`
+and `/usr/bin/make`.  
 
 If gcc is not installed, then you will have to figure out how to
 install it on your computer first.  Linux/Unix computers usually
 have it pre-installed along with the operating system; if not, then
-typing ```sudo yum install gcc``` or ```sudo apt-get install gcc```
+typing `sudo yum install gcc` or `sudo apt-get install gcc`
 will typically install it.  Apple OS X does not include it by
 default, so you will have to install it.  If you are using OS X
-Mavericks or later, then type ```xcode-select --install``` to install
+Mavericks or later, then type `xcode-select --install` to install
 the Xcode command line tools, which includes *gcc* (or actually a
-similar compiler).  The ```make``` command will be installed at the
-same time that ```gcc``` is installed.  Cygwin users would have to
+similar compiler).  The `make` command will be installed at the
+same time that `gcc` is installed.  Cygwin users would have to
 re-run the installation program and include the compile tools if
 gcc was not initially installed with cygwin (a minimal installation
 will not include gcc).
@@ -208,9 +222,11 @@ To use humdrum-tools commands within any directory, you must add the
 humdrum/bin and humextra/bin directories to the PATH environmental 
 variable.  First, determine the shell (unix command-line interpreter) 
 which you are using in the terminal by running this command:
-    ```echo $SHELL```
+
+```echo $SHELL```
+
 For bash shells (most common shell), the above command should reply
-with the text ```/bin/bash```.  If you are using another shell,
+with the text `/bin/bash`.  If you are using another shell,
 "*bash*" will be replaced with the name of the shell you are using.
 
 To temporarily adjust the PATH variable so that you can immediately 
@@ -219,6 +235,7 @@ main methods of setting the PATH variable in the various shells from
 the command line:
 
 In bash, sh, ksh, zsh, type these commands:
+
 ```bash
     cd ~/humdrum-tools    # or wherever humdrum-tools was downloaded.
     PATH=`pwd`/humdrum/bin:$PATH
@@ -226,6 +243,7 @@ In bash, sh, ksh, zsh, type these commands:
 ```
 
 Or in csh or tcsh, do these commands:
+
 ```bash
     cd ~/humdrum-tools    # or wherever humdrum-tools was downloaded.
     set PATH=`pwd`/humdrum/bin:$PATH
@@ -235,20 +253,22 @@ Or in csh or tcsh, do these commands:
 For a persistent installation of humdrum tools whenever you open a
 new terminal, the PATH environment variable needs to be amended
 during login with the paths of the humdrum-tools executables.  The 
-above ```PATH=``` lines must be added to the shell login script.  The
+above `PATH=` lines must be added to the shell login script.  The
 name of this shell login file is different for different shells.  If 
 you type:
+
 ```bash
    cd ~/humdrum-tools
    make install
 ```
+
 then the humdrum-tools makefile will attempt to place those lines in the
 correct file based on your login shell; otherwise, you can add the lines
 manually to the shell startup scripts as outlined below.  The command
-```make install-hint``` will suggest the commands needed to add the 
+`make install-hint` will suggest the commands needed to add the 
 humdrum-tools bin directories permanently to the PATH environment 
 variable if you want to manually configure it.  Don't run the temporary
-installation given further above before running ```make install```, since
+installation given further above before running `make install`, since
 this make target looks at the PATH environment variable to decide if the
 PATH needs to be updated.  Login again if you already ran the temporary
 PATH update.
@@ -279,9 +299,10 @@ file but no ~/.bash_profile, the settings in ~/.profile will be
 ignored if you create the ~/.bash_profile file.
 
 For system-wide installations, super-users will have to add the
-```PATH=``` lines to the correct file within the ```/etc/```
+`PATH=` lines to the correct file within the ```/etc/```
 directory.  Super-users can usually install for all users 
 on a computer system in any common shell by running these commands:
+
 ```bash
    cd /usr/local/humdrum-tools    # or wherever humdrum-tools was downloaded.
 # bash, sh, ksh, and zsh
@@ -292,10 +313,11 @@ on a computer system in any common shell by running these commands:
    sudo echo "set PATH=`pwd`/humextra/bin:$PATH" >> /etc/csh.cshrc
 ```
 
-Many linux systems have a directory called ```/etc/profile.d``` into which
-package-specific shell settings are placed rather than altering ```/etc/profile```.  If so, 
+Many linux systems have a directory called ``/etc/profile.d` into which
+package-specific shell settings are placed rather than altering `/etc/profile`.  If so, 
 then for bash-like shells, create a file in that directory with the PATH 
 variable updates rather than editing the /etc/profile file:
+
 ```bash
    if [ -e /etc/profile.d ]
    then 
@@ -314,6 +336,7 @@ opening a new terminal window and type:
 ```bash
    echo $PATH | tr : '\n' | grep humdrum
 ```
+
 The computer should reply with the full path names of the *bin* directories for 
 the Humdrum Toolkit and Humdrum Extras.  With a system-wide installation,
 the above command should display something like this:
@@ -326,15 +349,19 @@ the above command should display something like this:
 You can also use the *which* command to see where a command is located.  
 If the humdrum-tools command paths are set up correctly, then the following
 commands:
+
 ```bash
    which key
    which keycor
 ```
+
 should reply something like this:
+
 ```
 /usr/local/humdrum-tools/humdrum/bin/key
 /usr/local/humdrum-tools/humextra/bin/keycor
 ```
+
 This implies that the PATH variable contains the correct two *bin* directories
 for using humdrum-tools.
 
@@ -342,7 +369,7 @@ for using humdrum-tools.
 Testing
 =======
 
-The command ```make regression``` will run regression tests for the Humdrum Toolkit
+The command `make regression` will run regression tests for the Humdrum Toolkit
 and Humdrum Extras.  The make target will run the commands on files and compare the
 results to the expected output from the programs for the given options.  Here is
 a sample of the regression test display:
@@ -368,6 +395,7 @@ sample		test 001 OK	Sample the music every quarter-note.
 ```
 
 If you only want to see failed tests, run this command:
+
 ```bash
    make regression | grep -v OK
 ```
@@ -398,6 +426,7 @@ been locally modified or added since you did the last update or
 download.
 
 If you want to keep local changes but still update, try these commands:
+
 ```bash
    cd `which mint | sed 's/humdrum\/bin\/mint$//'`
    git stash
@@ -408,12 +437,10 @@ If you want to keep local changes but still update, try these commands:
 
 If you want to undo any local changes before updating, you can run
 this command:
+
 ```bash
    cd `which mint | sed 's/humdrum\/bin\/mint$//'`
    git reset --hard HEAD^
    make update
    make
 ```
-
-
-
