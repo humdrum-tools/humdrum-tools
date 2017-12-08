@@ -192,7 +192,7 @@ Note that to use the ```make``` command or ```gcc``` for compiling
 the C/C++ programs, these must already be installed.  Check to see if
 gcc is installed by typing these commands:
 
-````bash
+```bash
    which gcc
    which make
 ```
