@@ -39,14 +39,11 @@ humdrum-tools and set them up as a single-user installation:
 
 ```bash
    cd               # Go to installation directory (home directory in this example).
-   git clone --recursive https://github.com/humdrum-tools/humdrum-tools
+   git clone https://github.com/humdrum-tools/humdrum-tools
    cd humdrum-tools # Go into repository to run make commands.
    make update      # Make sure you have the most recent humdrum/humextra code.
    make             # Compile C/C++ programs and create bin directories.
    make install     # Add bin directories to $PATH environment variable.
-   make regression  # Test tools to make sure they are working on your computer.
-   make data	    # Download sample Humdrum data files to work with.
-   make doc         # Download documentation for offline reference.
 ```
 
 Otherwise, follow the more detailed instructions below.  Super-users
