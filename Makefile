@@ -191,7 +191,7 @@ ifneq ($(wildcard .gitmodules),)
 endif
 ifneq ($(wildcard data),)
 	(cd data && git pull)
-	(cd data && git submodule update --init --recursive
+	(cd data && git submodule update --init --recursive)
 	(cd data && git submodule foreach "(git checkout master; git pull origin master)")
 endif
 ifneq ($(wildcard humextra/external/improv),)
