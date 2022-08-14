@@ -1,6 +1,6 @@
 [submodule "humextra"]
 	path = humextra
-	url = https://github.com/craigsapp/humextra.git
+	url = git@github.com:craigsapp/humextra.git
 [submodule "humdrum"]
 	path = humdrum
-	url = https://github.com/humdrum-tools/humdrum.git
+	url = git@github.com:humdrum-tools/humdrum.git
