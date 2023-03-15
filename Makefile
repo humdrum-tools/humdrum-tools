@@ -186,6 +186,7 @@ pull: update
 update: checkgit
 	git pull
 ifneq ($(wildcard .gitmodules),)
+	git submodule sync
 	git submodule update --init --recursive
 	git submodule foreach "(git checkout master; git pull origin master)"
 endif
