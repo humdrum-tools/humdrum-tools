@@ -179,7 +179,7 @@ remove-doc:    checkgit
 
 ###########################################################################
 ##
-## Update all submodules to their respective master versions
+## Update all submodules to their respective main branch versions
 ##
 
 pull: update
@@ -188,12 +188,12 @@ update: checkgit
 ifneq ($(wildcard .gitmodules),)
 	git submodule sync
 	git submodule update --init --recursive
-	git submodule foreach "(git checkout master; git pull origin master)"
+	git submodule foreach "(git checkout main; git pull origin main)"
 endif
 ifneq ($(wildcard data),)
 	(cd data && git pull)
 	(cd data && git submodule update --init --recursive)
-	(cd data && git submodule foreach "(git checkout master; git pull origin master)")
+	(cd data && git submodule foreach "(git checkout main; git pull origin main)")
 endif
 ifneq ($(wildcard humextra/external/improv),)
 	(cd humextra/external/improv && git pull)
