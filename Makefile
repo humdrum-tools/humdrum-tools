@@ -184,6 +184,7 @@ remove-doc:    checkgit
 
 pull: update
 update: checkgit
+	(cd humextra/external/pcre-8.35; git checkout .)
 	git pull
 ifneq ($(wildcard .gitmodules),)
 	git submodule sync
