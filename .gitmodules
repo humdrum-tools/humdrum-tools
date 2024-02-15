@@ -1,6 +1,8 @@
 [submodule "humextra"]
 	path = humextra
 	url = https://github.com/craigsapp/humextra.git
+	branch = main
 [submodule "humdrum"]
 	path = humdrum
 	url = https://github.com/humdrum-tools/humdrum.git
+	branch = main
