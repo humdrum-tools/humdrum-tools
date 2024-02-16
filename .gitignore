@@ -1,5 +1,6 @@
 .*
 !.gitignore
+.DS_Store
 improv
 data
 doc
