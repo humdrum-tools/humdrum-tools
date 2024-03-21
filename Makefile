@@ -95,11 +95,11 @@ ifeq ($(USERSHELL),csh)
    SHELLSCRIPT = ~/.cshrc
 endif
 
-HUMDRUMINSTALL  = "export PATH=`pwd`/humdrum/bin:\$$PATH"
-HUMEXTRAINSTALL = "export PATH=`pwd`/humextra/bin:\$$PATH"
+HUMDRUMINSTALL  = "export PATH=\"`pwd`/humdrum/bin:\$$PATH\""
+HUMEXTRAINSTALL = "export PATH=\"`pwd`/humextra/bin:\$$PATH\""
 ifeq ($(USERSHELL),$(filter $(USERSHELL),csh tcsh))
-   HUMDRUMINSTALL  = "set PATH=`pwd`/humdrum/bin:\$$PATH"
-   HUMEXTRAINSTALL = "set PATH=`pwd`/humextra/bin:\$$PATH"
+   HUMDRUMINSTALL  = "set PATH=\"`pwd`/humdrum/bin:\$$PATH\""
+   HUMEXTRAINSTALL = "set PATH=\"`pwd`/humextra/bin:\$$PATH\""
 endif
 
 
